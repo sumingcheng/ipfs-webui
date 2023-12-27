@@ -40,7 +40,7 @@ const NavLink = ({
     <a href={disabled ? null : href} className={anchorClass} role='menuitem' title={children}>
       <div className='db ph2 pv1'>
         <div className='db'>
-          <Svg width='46' role='presentation' className={svgClass} />
+          <Svg width='46' role='presentation' className={svgClass}/>
         </div>
         <div className={`${active ? 'o-100' : 'o-50'} db f6 tc montserrat ttu fw1 `} style={{ whiteSpace: 'pre-wrap' }}>
           {children}
@@ -60,22 +60,28 @@ export const NavBar = ({ t }) => {
       <div className='flex flex-column'>
         <a href="#/welcome" role='menuitem' title={t('welcome:description')}>
           <div className='pt3 pb1 pb2-l'>
-            <img className='navbar-logo-vert center db-l dn pt3 pb1' style={{ height: 94 }} src={ipfsLogoTextVert} alt='' />
-            <img className='navbar-logo-horiz center db dn-l' style={{ height: 70 }} src={ipfsLogoTextHoriz} alt='' />
+            <img className='navbar-logo-vert center db-l dn pt3 pb1' style={{ height: 94, display: 'none' }}
+                 src={ipfsLogoTextVert}
+                 alt=''/>
+            <img className='navbar-logo-horiz center db dn-l' style={{ height: 70, display: 'none' }}
+                 src={ipfsLogoTextHoriz} alt=''/>
           </div>
         </a>
         <div className='db overflow-x-scroll overflow-x-hidden-l nowrap tc' role='menubar'>
-          <NavLink to='/' alternative="status" icon={StrokeMarketing}>{t('status:title')}</NavLink>
           <NavLink to='/files' icon={StrokeWeb}>{t('files:title')}</NavLink>
+          <NavLink to='/' alternative="status" icon={StrokeMarketing}>{t('status:title')}</NavLink>
           <NavLink to='/explore' icon={StrokeIpld}>{t('explore:tabName')}</NavLink>
           <NavLink to='/peers' icon={StrokeCube}>{t('peers:title')}</NavLink>
           <NavLink to='/settings' icon={StrokeSettings}>{t('settings:title')}</NavLink>
         </div>
       </div>
-      <div className='dn db-l navbar-footer mb2 tc center f7 o-80 glow'>
-        { gitRevision && <div className='mb1'>
-          <a className='link white' href={revisionUrl} target='_blank' rel='noopener noreferrer'>{t('app:terms.revision')} {gitRevision}</a>
-        </div> }
+      <div className='dn db-l navbar-footer mb2 tc center f7 o-80 glow' style={{
+        display: 'none'
+      }}>
+        {gitRevision && <div className='mb1'>
+          <a className='link white' href={revisionUrl} target='_blank'
+             rel='noopener noreferrer'>{t('app:terms.revision')} {gitRevision}</a>
+        </div>}
         <div className='mb1'>
           <a className='link white' href={codeUrl} target='_blank' rel='noopener noreferrer'>{t('app:nav.codeLink')}</a>
         </div>

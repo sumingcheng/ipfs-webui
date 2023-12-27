@@ -88,7 +88,7 @@ class FilesExploreForm extends React.Component {
         <div className='flex flex-row-reverse mb2'>
           <Button
             minWidth={0}
-            disabled={!this.isValid}
+            // disabled={!this.isValid}
             title={t('app:actions.inspect')}
             style={{ borderRadius: '0 3px 3px 0' }}
             onClick={this.onInspect}
@@ -99,7 +99,7 @@ class FilesExploreForm extends React.Component {
           </Button>
           <Button
             minWidth={0}
-            disabled={!this.isValid}
+            // disabled={!this.isValid}
             style={{ borderRadius: '0' }}
             title={t('app:actions.browse')}
             onClick={this.onBrowse}

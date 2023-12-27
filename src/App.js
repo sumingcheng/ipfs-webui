@@ -57,32 +57,51 @@ export class App extends Component {
   }
 
   render () {
-    const { t, route: Page, ipfsReady, doFilesNavigateTo, doExploreUserProvidedPath, routeInfo: { url }, connectDropTarget, canDrop, isOver, showTooltip } = this.props
+    const {
+      t,
+      route: Page,
+      ipfsReady,
+      doFilesNavigateTo,
+      doExploreUserProvidedPath,
+      routeInfo: { url },
+      connectDropTarget,
+      canDrop,
+      isOver,
+      showTooltip
+    } = this.props
     return connectDropTarget(
       // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
       <div className='sans-serif h-100 relative' onClick={getNavHelper(this.props.doUpdateUrl)}>
         {/* Tinted overlay that appears when dragging and dropping an item */}
-        { canDrop && isOver && <div className='h-100 top-0 right-0 fixed appOverlay' style={{ background: 'rgba(99, 202, 210, 0.2)' }} /> }
-        <div className='flex flex-row-reverse-l flex-column-reverse justify-end justify-start-l' style={{ minHeight: '100vh' }}>
+        {canDrop && isOver &&
+          <div className='h-100 top-0 right-0 fixed appOverlay' style={{ background: 'rgba(99, 202, 210, 0.2)' }}/>}
+        <div className='flex flex-row-reverse-l flex-column-reverse justify-end justify-start-l'
+             style={{ minHeight: '100vh' }}>
           <div className='flex-auto-l'>
-            <div className='flex items-center ph3 ph4-l' style={{ WebkitAppRegion: 'drag', height: 75, background: '#F0F6FA', paddingTop: '20px', paddingBottom: '15px' }}>
+            <div className='flex items-center ph3 ph4-l' style={{
+              WebkitAppRegion: 'drag',
+              height: 75,
+              background: '#F0F6FA',
+              paddingTop: '20px',
+              paddingBottom: '15px'
+            }}>
               <div className='joyride-app-explore' style={{ width: 560 }}>
-                <FilesExploreForm onBrowse={doFilesNavigateTo} onInspect={doExploreUserProvidedPath} />
+                <FilesExploreForm onBrowse={doFilesNavigateTo} onInspect={doExploreUserProvidedPath}/>
               </div>
               <div className='dn flex-ns flex-auto items-center justify-end'>
-                <TourHelper />
-                <Connected className='joyride-app-status' />
+                <TourHelper/>
+                <Connected className='joyride-app-status'/>
               </div>
             </div>
             <main className='bg-white pv3 pa3 pa4-l'>
-              { (ipfsReady || url === '/welcome' || url.startsWith('/settings'))
-                ? <Page />
-                : <ComponentLoader />
+              {(ipfsReady || url === '/welcome' || url.startsWith('/settings'))
+                ? <Page/>
+                : <ComponentLoader/>
               }
             </main>
           </div>
           <div className='navbar-container flex-none-l bg-navy'>
-            <NavBar />
+            <NavBar/>
           </div>
         </div>
 
@@ -96,7 +115,7 @@ export class App extends Component {
           locale={getJoyrideLocales(t)}
         />
 
-        <Notify />
+        <Notify/>
       </div>
     )
   }
