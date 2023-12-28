@@ -18,6 +18,7 @@ import Notify from './components/notify/Notify.js'
 import Connected from './components/connected/Connected.js'
 import TourHelper from './components/tour/TourHelper.js'
 import FilesExploreForm from './files/explore-form/FilesExploreForm.js'
+import Button from './components/button/Button.js'
 
 export class App extends Component {
   static propTypes = {
@@ -89,6 +90,17 @@ export class App extends Component {
                 <FilesExploreForm onBrowse={doFilesNavigateTo} onInspect={doExploreUserProvidedPath}/>
               </div>
               <div className='dn flex-ns flex-auto items-center justify-end'>
+                <Button
+                  style={{
+                    'min-width': '72px',
+                    height: '35px',
+                    color: '#fff',
+                    'font-size': '13px',
+                    'text-align': 'center',
+                    'margin-right': '10px'
+                  }}
+                  onClick={() => window.open('http://172.40.253.155:10001/#/', '_blank')}
+                >AIStore</Button>
                 <TourHelper/>
                 <Connected className='joyride-app-status'/>
               </div>
