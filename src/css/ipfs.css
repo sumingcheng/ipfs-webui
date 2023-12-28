@@ -1,10 +1,4 @@
-/* _|   _ \   __|    __|
-  |    __/   _|   \__ \        _|  (_-<  (_-<
-___|  _|    _|    ____/  _)  \__|  ___/  ___/
-
-See: https://github.com/ipfs-shipyard/ipfs-css
-*/
-
+/*修改为包内引入*/
 @font-face {
   font-family: 'Inter';
   font-style:  normal;
@@ -305,7 +299,7 @@ See: https://github.com/ipfs-shipyard/ipfs-css
 
 .yellow-muted { color: #f9a13e; }
 
-.teal { color: #378085; }
+.teal { color: #718fe9; }
 
 .teal-muted { color: #439a9d; }
 
@@ -317,7 +311,7 @@ See: https://github.com/ipfs-shipyard/ipfs-css
 
 .snow-muted { color: #f7f8fa; }
 
-.link { color: #117eb3; }
+.link { color: #4e71e6; }
 
 .washed-blue { color: #F0F6FA; }
 
@@ -445,7 +439,7 @@ See: https://github.com/ipfs-shipyard/ipfs-css
 
 .fill-navy-muted { fill: #244e66; }
 
-.fill-aqua { fill: #69c4cd; }
+.fill-aqua { fill: #4e71e6; }
 
 .fill-aqua-muted { fill: #9ad4db; }
 

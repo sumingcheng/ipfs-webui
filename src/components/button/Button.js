@@ -11,7 +11,9 @@ const getButtonClassName = ({ fill, bg, color, danger, disabled }, type) => {
 }
 
 const Button = ({ className, minWidth, children, style, type, danger, ...props }) =>
-  <button type={type} className={classNames('Button transition-all sans-serif dib v-mid fw5 nowrap lh-copy bn br1 pa2 focus-outline', className, getButtonClassName(props, type))} disabled={props.disabled} style={{ minWidth, ...style }} {...props}>
+  <button type={type}
+          className={classNames('Button transition-all sans-serif dib v-mid fw5 nowrap lh-copy bn br1 pa2 focus-outline', className, getButtonClassName(props, type))}
+          disabled={props.disabled} style={{ minWidth, ...style }} {...props}>
     {children}
   </button>
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactIdenticon from 'react-identicons'
-import theme from 'ipfs-css/theme.json'
+import theme from '../../css/theme.json'
 
 const { colors } = theme
 const identiconPalette = [colors.navy, colors.aqua, colors.gray, colors.charcoal, colors.red, colors.yellow, colors.teal, colors.green]

@@ -51,6 +51,12 @@ const NavLink = ({
 }
 
 export const NavBar = ({ t }) => {
+  React.useEffect(() => {
+    if (window.location.hash === '#/' || window.location.hash === '') {
+      window.location.hash = '#/files'
+    }
+  }, [])
+
   const codeUrl = 'https://github.com/ipfs/ipfs-webui'
   const bugsUrl = `${codeUrl}/issues`
   const gitRevision = process.env.REACT_APP_GIT_REV
