@@ -39,7 +39,12 @@ export class App extends Component {
   }
 
   addFiles = async (filesPromise) => {
-    const { doFilesWrite, doUpdateHash, routeInfo, filesPathInfo } = this.props
+    const {
+      doFilesWrite,
+      doUpdateHash,
+      routeInfo,
+      filesPathInfo
+    } = this.props
     const isFilesPage = routeInfo.pattern === '/files*'
     const addAtPath = isFilesPage ? (filesPathInfo?.realPath || routeInfo.params.path) : '/'
     const files = await filesPromise
@@ -70,26 +75,27 @@ export class App extends Component {
       isOver,
       showTooltip
     } = this.props
+
     return connectDropTarget(
       // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
-      <div className='sans-serif h-100 relative' onClick={getNavHelper(this.props.doUpdateUrl)}>
+      <div className="sans-serif h-100 relative" onClick={getNavHelper(this.props.doUpdateUrl)}>
         {/* Tinted overlay that appears when dragging and dropping an item */}
         {canDrop && isOver &&
-          <div className='h-100 top-0 right-0 fixed appOverlay' style={{ background: 'rgba(99, 202, 210, 0.2)' }}/>}
-        <div className='flex flex-row-reverse-l flex-column-reverse justify-end justify-start-l'
+          <div className="h-100 top-0 right-0 fixed appOverlay" style={{ background: 'rgba(99, 202, 210, 0.2)' }}/>}
+        <div className="flex flex-row-reverse-l flex-column-reverse justify-end justify-start-l"
              style={{ minHeight: '100vh' }}>
-          <div className='flex-auto-l'>
-            <div className='flex items-center ph3 ph4-l' style={{
+          <div className="flex-auto-l">
+            <div className="flex items-center ph3 ph4-l" style={{
               WebkitAppRegion: 'drag',
               height: 75,
               background: '#F0F6FA',
               paddingTop: '20px',
               paddingBottom: '15px'
             }}>
-              <div className='joyride-app-explore' style={{ width: 560 }}>
+              <div className="joyride-app-explore" style={{ width: 560 }}>
                 <FilesExploreForm onBrowse={doFilesNavigateTo} onInspect={doExploreUserProvidedPath}/>
               </div>
-              <div className='dn flex-ns flex-auto items-center justify-end'>
+              <div className="dn flex-ns flex-auto items-center justify-end">
                 <Button
                   style={{
                     'min-width': '72px',
@@ -102,17 +108,17 @@ export class App extends Component {
                   onClick={() => window.open('http://172.40.253.155:10001/#/', '_blank')}
                 >AIStore</Button>
                 <TourHelper/>
-                <Connected className='joyride-app-status'/>
+                <Connected className="joyride-app-status"/>
               </div>
             </div>
-            <main className='bg-white pv3 pa3 pa4-l'>
+            <main className="bg-white pv3 pa3 pa4-l">
               {(ipfsReady || url === '/welcome' || url.startsWith('/settings'))
                 ? <Page/>
                 : <ComponentLoader/>
               }
             </main>
           </div>
-          <div className='navbar-container flex-none-l bg-navy'>
+          <div className="navbar-container flex-none-l bg-navy">
             <NavBar/>
           </div>
         </div>
