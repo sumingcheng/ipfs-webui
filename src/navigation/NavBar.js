@@ -65,11 +65,11 @@ export const NavBar = ({ t }) => {
     <div className='h-100 fixed-l flex flex-column justify-between' style={{ overflowY: 'auto', width: 'inherit' }}>
       <div className='flex flex-column'>
         <a href="#/welcome" role='menuitem' title={t('welcome:description')}>
-          <div className='pt3 pb1 pb2-l'>
-            <img className='navbar-logo-vert center db-l dn pt3 pb1' style={{ height: 94, display: 'none' }}
+          <div className='pt3 pb1 pb2-l icon'>
+            <img className='navbar-logo-vert center db-l dn pt3 pb1' style={{ height: 94 }}
                  src={ipfsLogoTextVert}
                  alt=''/>
-            <img className='navbar-logo-horiz center db dn-l' style={{ height: 70, display: 'none' }}
+            <img className='navbar-logo-horiz center db dn-l' style={{ height: 70 }}
                  src={ipfsLogoTextHoriz} alt=''/>
           </div>
         </a>
