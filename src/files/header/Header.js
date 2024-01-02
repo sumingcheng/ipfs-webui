@@ -11,6 +11,7 @@ import Button from '../../components/button/Button.js'
 import GlyphDots from '../../icons/GlyphDots.js'
 import GlyphPinCloud from '../../icons/GlyphPinCloud.js'
 import '../PendingAnimation.css'
+import './index.css'
 
 const BarOption = ({ children, text, isLink = false, className = '', ...etc }) => (
   <div className={classNames(className, 'tc pa3', etc.onClick && 'pointer')} {...etc}>
@@ -60,6 +61,7 @@ class Header extends React.Component {
     return (
       <div className='db flex-l justify-between items-center'>
         <div className='mb3 overflow-hidden mr2'>
+          <div className={'font16'}>模型文件存储</div>
           <Breadcrumbs className="joyride-files-breadcrumbs" path={files ? files.path : '/404'}
             onClick={onNavigate} onContextMenuHandle={(...args) => this.handleBreadCrumbsContextMenu(...args)}
             onAddFiles={this.props.onAddFiles} onMove={this.props.onMove}/>
