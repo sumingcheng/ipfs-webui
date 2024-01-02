@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
-import { Menu } from 'antd'
 import Main from './main.js'
+import MenuRight from './components/menuRight.js'
+import { Col, Row, Menu } from 'antd'
 
 // Style
 import './layout.css'
@@ -14,19 +15,33 @@ const App = () => {
     setCurrent(e.key)
   }
 
+  // 定义菜单项
+  const menuItems = [
+    {
+      label: <Link to="/">首页</Link>,
+      key: 'index'
+    },
+    {
+      label: <Link to="/modelRepository">模型仓库</Link>,
+      key: 'modelRepository'
+    }
+  ]
+
   return (
     <Router>
-      <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" className={'main'}>
-        <Menu.Item key="index">
-          <Link to="/">首页</Link>
-        </Menu.Item>
-        <Menu.Item key="modelRepository">
-          <Link to="/modelRepository">模型仓库</Link>
-        </Menu.Item>
-      </Menu>
+      <Row className={'menuRow'}>
+        <Col span={8}>
+          <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" className={'main'}
+                items={menuItems}/>
+        </Col>
+        <Col span={8}></Col>
+        <Col span={8}>
+          <MenuRight/>
+        </Col>
+      </Row>
       <Routes>
-        <Route path="/modelRepository" element={<ModelRepository />} />
-        <Route path="/" element={<Home />} />
+        <Route path="/modelRepository" element={<ModelRepository/>}/>
+        <Route path="/" element={<Home/>}/>
       </Routes>
     </Router>
   )
@@ -34,12 +49,16 @@ const App = () => {
 
 // 这里定义你的 ModelRepository 组件
 const ModelRepository = () => {
-  return <div><Main/></div>
+  return (
+    <div>
+      <Main/>
+    </div>
+  )
 }
 
 // 这里定义你的 Home 组件
 const Home = () => {
-  return <div>首页内容</div>
+  return (<div>正在开发中……</div>)
 }
 
 export default App

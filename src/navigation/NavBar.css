@@ -23,6 +23,11 @@
     border-bottom: 0;
     color: black;
   }
+
+  /*.navbar-item:hover {*/
+  /*  background-color: #3c63e3 !important;*/
+  /*  color: white !important;*/
+  /*}*/
 }
 
 @media only screen and (min-height: 49em) and (min-width: 60em) {

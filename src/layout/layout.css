@@ -1,3 +1,10 @@
-.main{
+.main {
+  font-weight: bold;
+  height: 50px;
+}
 
+.titleBar {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
 }

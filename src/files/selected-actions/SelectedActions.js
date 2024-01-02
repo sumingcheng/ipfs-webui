@@ -19,7 +19,7 @@ const styles = {
     color: '#59595A'
   },
   count: {
-    backgroundColor: '#69C4CD',
+    backgroundColor: '#7894ea',
     color: '#F9FAFB',
     width: '38px',
     height: '38px'

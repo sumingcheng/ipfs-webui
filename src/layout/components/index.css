@@ -1,0 +1,10 @@
+.menuButtons {
+  display: flex;
+  justify-content: right;
+  margin-right: 20px;
+  margin-top: 10px;
+}
+
+.myButton{
+  margin-right: 20px;
+}

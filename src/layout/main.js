@@ -98,12 +98,13 @@ export class App extends Component {
               <div className="dn flex-ns flex-auto items-center justify-end">
                 <Button
                   style={{
-                    'min-width': '72px',
+                    minWidth: '72px',
                     height: '35px',
                     color: '#fff',
-                    'font-size': '13px',
-                    'text-align': 'center',
-                    'margin-right': '10px'
+                    fontSize: '13px',
+                    textAlign: 'center',
+                    marginRight: '10px',
+                    display: 'none'
                   }}
                   onClick={() => window.open('http://172.40.253.155:10001/#/', '_blank')}
                 >AIStore</Button>

@@ -78,6 +78,7 @@
     "it-last": "^1.0.5",
     "it-map": "^1.0.5",
     "kubo-rpc-client": "^3.0.2",
+    "less": "^4.2.0",
     "milliseconds": "^1.0.3",
     "money-clip": "^3.0.5",
     "p-memoize": "^4.0.0",
