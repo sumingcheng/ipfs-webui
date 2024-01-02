@@ -3,6 +3,9 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import { Menu } from 'antd'
 import Main from './main.js'
 
+// Style
+import './layout.css'
+
 const App = () => {
   const [current, setCurrent] = useState('index')
 
@@ -13,7 +16,7 @@ const App = () => {
 
   return (
     <Router>
-      <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal">
+      <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" className={'main'}>
         <Menu.Item key="index">
           <Link to="/">首页</Link>
         </Menu.Item>
