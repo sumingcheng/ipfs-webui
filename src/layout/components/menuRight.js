@@ -18,7 +18,7 @@ const App = () => {
     <div className={'menuButtons'}>
       <Button
         type="primary" className={'myButton'}
-        onClick={() => window.open('http://172.40.253.155:10001/#/', '_blank')}
+        onClick={() => window.open('http://172.40.253.155:10001/#/mybox/downloaded', '_blank')}
       >我的Box</Button>
       <Dropdown
         menu={{

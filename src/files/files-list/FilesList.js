@@ -51,8 +51,32 @@ const mergeRemotePinsIntoFiles = (files, remotePins = [], pendingPins = [], fail
 }
 
 export const FilesList = ({
-  className, files, pins, pinningServices, remotePins, pendingPins, failedPins, filesSorting, updateSorting, filesIsFetching, filesPathInfo, showLoadingAnimation,
-  onShare, onSetPinning, onInspect, onDownload, onRemove, onRename, onNavigate, onRemotePinClick, onAddFiles, onMove, doFetchRemotePins, doDismissFailedPin, handleContextMenuClick, t
+  className,
+  files,
+  pins,
+  pinningServices,
+  remotePins,
+  pendingPins,
+  failedPins,
+  filesSorting,
+  updateSorting,
+  filesIsFetching,
+  filesPathInfo,
+  showLoadingAnimation,
+  onShare,
+  onSetPinning,
+  onInspect,
+  onDownload,
+  onRemove,
+  onRename,
+  onNavigate,
+  onRemotePinClick,
+  onAddFiles,
+  onMove,
+  doFetchRemotePins,
+  doDismissFailedPin,
+  handleContextMenuClick,
+  t
 }) => {
   const [selected, setSelected] = useState([])
   const [focused, setFocused] = useState(null)
@@ -63,7 +87,11 @@ export const FilesList = ({
   const refreshPinCache = true // manually clicking on Pin Status column skips cache and updates remote status
 
   filesPathInfo = filesPathInfo ?? {}
-  const [{ canDrop, isOver, isDragging }, drop] = useDrop({
+  const [{
+    canDrop,
+    isOver,
+    isDragging
+  }, drop] = useDrop({
     accept: NativeTypes.FILE,
     drop: (_, monitor) => {
       if (monitor.didDrop()) {
@@ -118,7 +146,10 @@ export const FilesList = ({
     }
 
     if ((e.key === 'Enter' || (e.key === 'ArrowRight' && e.metaKey)) && focused !== null) {
-      return onNavigate({ path: focusedFile.path, cid: focusedFile.cid })
+      return onNavigate({
+        path: focusedFile.path,
+        cid: focusedFile.cid
+      })
     }
 
     if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
@@ -145,7 +176,10 @@ export const FilesList = ({
 
         setFocused(name)
         const domNode = findDOMNode(filesRefs.current[name])
-        domNode.scrollIntoView({ behaviour: 'smooth', block: 'center' })
+        domNode.scrollIntoView({
+          behaviour: 'smooth',
+          block: 'center'
+        })
         domNode.querySelector('input[type="checkbox"]').focus()
       }
 
@@ -204,7 +238,10 @@ export const FilesList = ({
         basepath = '/'
       }
 
-      const toMove = selectedFiles.map(({ name, path }) => ([
+      const toMove = selectedFiles.map(({
+        name,
+        path
+      }) => ([
         path,
         join(basepath, name)
       ]))
@@ -240,26 +277,35 @@ export const FilesList = ({
   }
 
   const emptyRowsRenderer = () => (
-    <Trans i18nKey='filesList.noFiles' t={t}>
-      <div className='pv3 b--light-gray bt tc gray f6'>
-            There are no available files. Add some!
+    <Trans i18nKey="filesList.noFiles" t={t}>
+      <div className="pv3 b--light-gray bt tc gray f6">
+        There are no available files. Add some!
       </div>
     </Trans>
   )
 
-  const rowRenderer = ({ index, key, style }) => {
+  const rowRenderer = ({
+    index,
+    key,
+    style
+  }) => {
     const pinsString = pins.map(p => p.toString())
     const listItem = allFiles[index]
     const onNavigateHandler = () => {
       if (listItem.type === 'unknown') return onInspect(listItem.cid)
-      return onNavigate({ path: listItem.path, cid: listItem.cid })
+      return onNavigate({
+        path: listItem.path,
+        cid: listItem.cid
+      })
     }
     const onDismissFailedPinHandler = () => {
       doDismissFailedPin(...listItem.failedPins)
     }
 
     return (
-      <div key={key} style={style} ref={r => { filesRefs.current[allFiles[index].name] = r }}>
+      <div key={key} style={style} ref={r => {
+        filesRefs.current[allFiles[index].name] = r
+      }}>
         <File
           {...listItem}
           pinned={pinsString.includes(listItem.cid.toString())}
@@ -274,7 +320,9 @@ export const FilesList = ({
           focused={focused === listItem.name}
           selected={selected.indexOf(listItem.name) !== -1}
           handleContextMenuClick={handleContextMenuClick}
-          translucent={isDragging || (isOver && canDrop)} />
+          translucent={isDragging || (isOver && canDrop)}/>
+        <div>
+        </div>
       </div>
     )
   }
@@ -289,35 +337,52 @@ export const FilesList = ({
   }, ['pl2 w2 glow'])
 
   return (
-    <section ref={drop} className={classnames('FilesList no-select sans-serif border-box w-100 flex flex-column', className)}>
-      { showLoadingAnimation
-        ? <LoadingAnimation />
+    <section ref={drop}
+             className={classnames('FilesList no-select sans-serif border-box w-100 flex flex-column', className)}>
+      {showLoadingAnimation
+        ? <LoadingAnimation/>
         : <Fragment>
-          <header className='gray pv3 flex items-center flex-none' style={{ paddingRight: '1px', paddingLeft: '1px' }}>
+          <header className="gray pv3 flex items-center flex-none" style={{
+            paddingRight: '1px',
+            paddingLeft: '1px'
+          }}>
             <div className={checkBoxCls}>
               <Checkbox checked={allSelected} onChange={toggleAll} aria-label={t('selectAllEntries')}/>
             </div>
-            <div className='ph2 f6 flex-auto'>
-              <button aria-label={ t('sortBy', { name: t('app:terms.name') })} onClick={changeSort(sorts.BY_NAME)}>
+            <div className="ph2 f6 flex-auto">
+              <button aria-label={t('sortBy', { name: t('app:terms.name') })} onClick={changeSort(sorts.BY_NAME)}>
                 {t('app:terms.name')} {sortByIcon(sorts.BY_NAME)}
               </button>
             </div>
-            <div className='pl2 pr1 tr f6 flex-none dn db-l mw4'>
-              { pinningServices && pinningServices.length
-                ? <button aria-label={t('app:terms.pinStatus')} onClick={() => doFetchRemotePins(files, refreshPinCache)}>{t('app:terms.pinStatus')}</button>
+            {/* 固定状态 */}
+            <div className="pl2 pr1 tr f6 flex-none dn db-l mw4">
+              {pinningServices && pinningServices.length
+                ? <button aria-label={t('app:terms.pinStatus')}
+                          onClick={() => doFetchRemotePins(files, refreshPinCache)}>{t('app:terms.pinStatus')}</button>
                 : <>{t('app:terms.pinStatus')}</>
               }
             </div>
-            <div className='pl2 pr4 tr f6 flex-none dn db-l mw4 w-10'>
-              <button aria-label={ t('sortBy', { name: t('size') })} onClick={changeSort(sorts.BY_SIZE)}>
+            {/* 大小 */}
+            <div className="pl2 pr4 tr f6 flex-none dn db-l mw4 w-10">
+              <button aria-label={t('sortBy', { name: t('size') })} onClick={changeSort(sorts.BY_SIZE)}>
                 {t('app:terms.size')} {sortByIcon(sorts.BY_SIZE)}
               </button>
             </div>
-            <div className='pa2' style={{ width: '2.5rem' }} />
+            {/* 操作 */}
+            <div className="pl2 pr4 tc f6 flex-none dn db-l mw4 w-10">
+              <span>操作</span> {/* 这里是你的新列标题 */}
+            </div>
+            {/* ... */}
+            <div className="pa2" style={{ width: '2.5rem' }}/>
           </header>
           <WindowScroller>
-            {({ height, isScrolling, onChildScroll, scrollTop }) => (
-              <div className='flex-auto'>
+            {({
+              height,
+              isScrolling,
+              onChildScroll,
+              scrollTop
+            }) => (
+              <div className="flex-auto">
                 <AutoSizer disableHeight>
                   {({ width }) => (
                     <List
@@ -325,8 +390,8 @@ export const FilesList = ({
                       autoHeight
                       width={width}
                       height={height}
-                      className='outline-0'
-                      aria-label={ t('filesListLabel')}
+                      className="outline-0"
+                      aria-label={t('filesListLabel')}
                       rowCount={rowCount}
                       rowHeight={55}
                       rowRenderer={rowRenderer}
@@ -340,7 +405,7 @@ export const FilesList = ({
               </div>
             )}
           </WindowScroller>
-          { selectedFiles.length !== 0 && <SelectedActions
+          {selectedFiles.length !== 0 && <SelectedActions
             className={'fixed bottom-0 right-0'}
             style={{
               zIndex: 20
@@ -355,9 +420,9 @@ export const FilesList = ({
             inspect={() => onInspect(selectedFiles[0].cid)}
             count={selectedFiles.length}
             isMfs={filesPathInfo.isMfs}
-            size={selectedFiles.reduce((a, b) => a + (b.size || 0), 0)} />
+            size={selectedFiles.reduce((a, b) => a + (b.size || 0), 0)}/>
           }
-        </Fragment> }
+        </Fragment>}
     </section>
   )
 }

@@ -14,24 +14,68 @@ import FileIcon from '../file-icon/FileIcon.js'
 import { CID } from 'multiformats/cid'
 import { NativeTypes } from 'react-dnd-html5-backend'
 import PinIcon from '../pin-icon/PinIcon.js'
+import { Button } from 'antd'
 
 const File = ({
-  name, type, size, cid, path, pinned, t, selected, focused, translucent, coloured, cantSelect, cantDrag, isMfs, isRemotePin, isPendingPin, isFailedPin,
-  onAddFiles, onMove, onSelect, onNavigate, onSetPinning, onDismissFailedPin, handleContextMenuClick
+  name,
+  type,
+  size,
+  cid,
+  path,
+  pinned,
+  t,
+  selected,
+  focused,
+  translucent,
+  coloured,
+  cantSelect,
+  cantDrag,
+  isMfs,
+  isRemotePin,
+  isPendingPin,
+  isFailedPin,
+  onAddFiles,
+  onMove,
+  onSelect,
+  onNavigate,
+  onSetPinning,
+  onDismissFailedPin,
+  handleContextMenuClick
 }) => {
   const dotsWrapper = useRef()
 
   const handleCtxLeftClick = (ev) => {
     const pos = dotsWrapper.current.getBoundingClientRect()
-    handleContextMenuClick(ev, 'LEFT', { name, size, type, cid, path, pinned }, pos)
+    handleContextMenuClick(ev, 'LEFT', {
+      name,
+      size,
+      type,
+      cid,
+      path,
+      pinned
+    }, pos)
   }
 
   const handleCtxRightClick = (ev) => {
-    handleContextMenuClick(ev, 'RIGHT', { name, size, type, cid, path, pinned })
+    handleContextMenuClick(ev, 'RIGHT', {
+      name,
+      size,
+      type,
+      cid,
+      path,
+      pinned
+    })
   }
 
   const [, drag, preview] = useDrag({
-    item: { name, size, cid, path, pinned, type: 'FILE' },
+    item: {
+      name,
+      size,
+      cid,
+      path,
+      pinned,
+      type: 'FILE'
+    },
     canDrag: !cantDrag && isMfs
   })
 
@@ -49,7 +93,10 @@ const File = ({
     return type === 'directory'
   }
 
-  const [{ isOver, canDrop }, drop] = useDrop({
+  const [{
+    isOver,
+    canDrop
+  }, drop] = useDrop({
     accept: [NativeTypes.FILE, 'FILE'],
     drop: (_, monitor) => {
       const item = monitor.getItem()
@@ -79,7 +126,10 @@ const File = ({
     className += ' selected'
   }
 
-  const styles = { height: 55, overflow: 'visible' }
+  const styles = {
+    height: 55,
+    overflow: 'visible'
+  }
 
   if (focused || (selected && !translucent) || coloured || (isOver && canDrop)) {
     styles.backgroundColor = '#F0F6FA'
@@ -108,33 +158,57 @@ const File = ({
     <div ref={drop}>
       <div className={className} style={styles} onContextMenu={handleCtxRightClick} ref={drag}>
         <div className={checkBoxCls}>
-          <Checkbox disabled={cantSelect} checked={selected} onChange={select} aria-label={ t('checkboxLabel', { name })} />
+          <Checkbox disabled={cantSelect} checked={selected} onChange={select}
+                    aria-label={t('checkboxLabel', { name })}/>
         </div>
 
-        <button ref={preview} onClick={onNavigate} className='relative pointer flex items-center flex-grow-1 ph2 pv1 w-40' aria-label={ name === '..' ? t('previousFolder') : t('fileLabel', { name, type, size }) }>
-          <div className='dib flex-shrink-0 mr2'>
-            <FileIcon name={name} type={type} />
+        <button ref={preview} onClick={onNavigate}
+                className="relative pointer flex items-center flex-grow-1 ph2 pv1 w-40"
+                aria-label={name === '..'
+                  ? t('previousFolder')
+                  : t('fileLabel', {
+                    name,
+                    type,
+                    size
+                  })}>
+          <div className="dib flex-shrink-0 mr2">
+            <FileIcon name={name} type={type}/>
           </div>
           <div style={{ width: 'calc(100% - 3.25rem)' }}>
             <Tooltip text={name}>
-              <div className='f6 truncate charcoal'>{name}</div>
+              <div className="f6 truncate charcoal">{name}</div>
             </Tooltip>
             <Tooltip text={hash}>
-              <div className='f7 mt1 gray truncate monospace'>{hash}</div>
+              <div className="f7 mt1 gray truncate monospace">{hash}</div>
             </Tooltip>
           </div>
         </button>
-
-        <div className='ph2 pv1 flex-none hide-child dn db-l tr mw3 w-20 transition-all'>
-          <button className='ph2 db button-inside-focus' style={{ width: '2.5rem', height: '2rem' }} onClick={isFailedPin ? onDismissFailedPin : () => onSetPinning([{ cid, pinned }])}>
-            <PinIcon isFailedPin={isFailedPin} isPendingPin={isPendingPin} isRemotePin={isRemotePin} pinned={pinned} />
+        {/* 固定状态 */}
+        <div className="ph2 pv1 flex-none hide-child dn db-l tr mw3 w-20 transition-all">
+          <button className="ph2 db button-inside-focus" style={{
+            width: '2.5rem',
+            height: '2rem'
+          }} onClick={isFailedPin
+            ? onDismissFailedPin
+            : () => onSetPinning([{
+                cid,
+                pinned
+              }])}>
+            <PinIcon isFailedPin={isFailedPin} isPendingPin={isPendingPin} isRemotePin={isRemotePin} pinned={pinned}/>
           </button>
         </div>
-        <div className='size pl2 pr4 pv1 flex-none f6 dn db-l tr charcoal-muted w-10 mw4'>
+        {/* 大小 */}
+        <div className="size pl2 pr4 pv1 flex-none f6 dn db-l tr charcoal-muted w-10 mw4">
           {size}
         </div>
-        <button ref={dotsWrapper} className='ph2 db button-inside-focus file-context-menu' style={{ width: '2.5rem' }} onClick={handleCtxLeftClick} aria-label={ t('checkboxLabel', { name })} >
-          <GlyphDots className='fill-gray-muted pointer hover-fill-gray transition-all'/>
+        {/* 广播 */}
+        <div className="size pl2 pr4 pv1 flex-none f6 dn db-l tc charcoal-muted w-10 mw4">
+          <Button type="text" >广播</Button>
+        </div>
+        {/* ... */}
+        <button ref={dotsWrapper} className="ph2 db button-inside-focus file-context-menu" style={{ width: '2.5rem' }}
+                onClick={handleCtxLeftClick} aria-label={t('checkboxLabel', { name })}>
+          <GlyphDots className="fill-gray-muted pointer hover-fill-gray transition-all"/>
         </button>
       </div>
     </div>
