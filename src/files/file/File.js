@@ -171,7 +171,11 @@ const File = ({
   const [form] = Form.useForm()
   const { postAppAdd } = usePostAppAdd()
 
-  const showModal = () => {
+  const showModal = (appIpfsHash, appName) => {
+    form.setFieldsValue({
+      appIpfsHash: appIpfsHash.toString(),
+      appName
+    })
     setIsModalVisible(true)
   }
 
@@ -238,7 +242,7 @@ const File = ({
         </div>
         {/* 操作 */}
         <div className="size pl2 pr4 pv1 flex-none f6 dn db-l tc charcoal-muted w-10 mw4">
-          <Button type="text" onClick={showModal}>广播</Button>
+          <Button type="text" onClick={() => showModal(cid, name)}>广播</Button>
         </div>
         {/* ... */}
         <button ref={dotsWrapper} className="ph2 db button-inside-focus file-context-menu" style={{ width: '2.5rem' }}
