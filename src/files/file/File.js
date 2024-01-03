@@ -157,7 +157,7 @@ const File = ({
     'o-1': selected || focused
   }, ['pl2 w2'])
   /* 调色盘 */
-  const [color, setColor] = React.useState('#fff')
+  const [color, setColor] = React.useState('')
   const [showPicker, setShowPicker] = React.useState(false)
 
   const handleColorChange = (color) => {
@@ -250,7 +250,7 @@ const File = ({
           <GlyphDots className="fill-gray-muted pointer hover-fill-gray transition-all"/>
         </button>
       </div>
-      <Modal title="新增应用" open={isModalVisible} onOk={handleOk} onCancel={handleCancel} okText="确认"
+      <Modal title="广播到应用市场" open={isModalVisible} onOk={handleOk} onCancel={handleCancel} okText="提交"
              cancelText="取消">
         <Form form={form} layout="vertical">
           <Form.Item name="appIpfsHash" label="文件CID" rules={[{ required: true, message: '请输入 CID ' }]}>

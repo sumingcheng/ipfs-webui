@@ -1,7 +1,7 @@
 import { useState, useCallback } from 'react'
 import { message } from 'antd'
 
-const API_URL = 'http://192.168.1.93:9999'
+const API_URL = 'http://172.40.253.155:9999'
 const token = '33f5b809-496a-4f7c-bd6c-94024d10d414'
 
 const usePostAppAdd = () => {
