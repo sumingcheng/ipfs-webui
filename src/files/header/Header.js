@@ -5,7 +5,7 @@ import { withTranslation } from 'react-i18next'
 import { humanSize } from '../../lib/files.js'
 // Components
 import Breadcrumbs from '../breadcrumbs/Breadcrumbs.js'
-import FileInput from '../file-input/FileInput.js'
+import FileInput from '../file-input/FileInputItem.js'
 import Button from '../../components/button/Button.js'
 // Icons
 import GlyphDots from '../../icons/GlyphDots.js'
@@ -13,9 +13,15 @@ import GlyphPinCloud from '../../icons/GlyphPinCloud.js'
 import '../PendingAnimation.css'
 import './index.css'
 
-const BarOption = ({ children, text, isLink = false, className = '', ...etc }) => (
+const BarOption = ({
+  children,
+  text,
+  isLink = false,
+  className = '',
+  ...etc
+}) => (
   <div className={classNames(className, 'tc pa3', etc.onClick && 'pointer')} {...etc}>
-    <span className='nowrap db f4 charcoal'>{children}</span>
+    <span className="nowrap db f4 charcoal">{children}</span>
     <span className={`nowrap db ttu f6 montserrat fw4 ${isLink ? 'link' : 'charcoal-muted'}`}>{text}</span>
   </div>
 )
@@ -59,54 +65,58 @@ class Header extends React.Component {
     const pinsInQueue = pendingPins.length + failedPins.length + completedPins.length
 
     return (
-      <div className='db flex-l justify-between items-center'>
-        <div className='mb3 overflow-hidden mr2'>
+      <div className="db flex-l justify-between items-center">
+        <div className="mb3 overflow-hidden mr2">
           <div className={'font16'}>模型文件存储</div>
           <Breadcrumbs className="joyride-files-breadcrumbs" path={files ? files.path : '/404'}
-            onClick={onNavigate} onContextMenuHandle={(...args) => this.handleBreadCrumbsContextMenu(...args)}
-            onAddFiles={this.props.onAddFiles} onMove={this.props.onMove}/>
+                       onClick={onNavigate}
+                       onContextMenuHandle={(...args) => this.handleBreadCrumbsContextMenu(...args)}
+                       onAddFiles={this.props.onAddFiles} onMove={this.props.onMove}/>
         </div>
-
-        <div className='mb3 flex justify-between items-center bg-snow-muted joyride-files-add'>
-          { pinsInQueue > 0 && <a href='#/pins' alt={t('pinningQueue')} title={t('pinningQueue')} className='ml3'>
+        <div className="mb3 flex justify-between items-center bg-snow-muted joyride-files-add">
+          {pinsInQueue > 0 && <a href="#/pins" alt={t('pinningQueue')} title={t('pinningQueue')} className="ml3">
             <GlyphPinCloud
               style={{ width: '3rem' }}
-              className='fill-teal PendingAnimation' />
-          </a> }
+              className="fill-teal PendingAnimation"/>
+          </a>}
 
-          <BarOption title={t('filesDescription')} text={t('app:terms:files')}>
-            { hasUpperDirectory
-              ? (
-                <span>
-                  { size(currentDirectorySize) }<span className='f5 gray'>/{ size(filesSize) }</span>
-                </span>
-                )
-              : size(filesSize) }
-          </BarOption>
+          {/* /!* 文件 *!/ */}
+          {/* <BarOption title={t('filesDescription')} text={t('app:terms:files')}> */}
+          {/*   {hasUpperDirectory */}
+          {/*     ? ( */}
+          {/*       <span> */}
+          {/*         {size(currentDirectorySize)}<span className="f5 gray">/{size(filesSize)}</span> */}
+          {/*       </span> */}
+          {/*       ) */}
+          {/*     : size(filesSize)} */}
+          {/* </BarOption> */}
+          {/* /!* 所有块 *!/ */}
+          {/* <BarOption title={t('allBlocksDescription')} text={t('allBlocks')}> */}
+          {/*   {size(repoSize)} */}
+          {/* </BarOption> */}
 
-          <BarOption title={t('allBlocksDescription')} text={t('allBlocks')}>
-            { size(repoSize) }
-          </BarOption>
-
-          <div className='pa3'>
-            <div className='ml-auto flex items-center'>
-              { (files && files.type === 'directory' && filesPathInfo.isMfs)
+          <div className="pa3 btn3w">
+            <div className="ml-auto flex items-center">
+              {(files && files.type === 'directory' && filesPathInfo.isMfs)
                 ? <FileInput
+                  className={'buttonColm'}
                   onNewFolder={this.props.onNewFolder}
                   onAddFiles={this.props.onAddFiles}
                   onAddByPath={this.props.onAddByPath}
                   onCliTutorMode={this.props.onCliTutorMode}
                 />
-                : <div ref={el => { this.dotsWrapper = el }}>
-                  <Button bg='bg-navy'
-                    color='white'
-                    fill='fill-aqua'
-                    className='f6 relative flex justify-center items-center tc'
-                    minWidth='100px'
-                    disabled={!files || filesPathInfo.isRoot || files.type === 'unknown'}
-                    onClick={this.handleContextMenu}>
-                    <GlyphDots className='w1 mr2' />
-                    { t('app:actions.more') }
+                : <div ref={el => {
+                  this.dotsWrapper = el
+                }}>
+                  <Button bg="bg-navy"
+                          color="white"
+                          fill="fill-aqua"
+                          className="f6 relative flex justify-center items-center tc"
+                          minWidth="100px"
+                          disabled={!files || filesPathInfo.isRoot || files.type === 'unknown'}
+                          onClick={this.handleContextMenu}>
+                    <GlyphDots className="w1 mr2"/>
+                    {t('app:actions.more')}
                   </Button>
                 </div>
               }
