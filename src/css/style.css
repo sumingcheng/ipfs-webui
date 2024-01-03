@@ -1,9 +1,15 @@
-.textButton{
+.textButton {
   color: #2853e0;
   border: 1px solid #2853e0;
   background: white;
 }
 
-.btn3w{
+.btn3w {
   width: 400px;
+}
+
+.formPicker {
+  position: absolute;
+  top: -307px;
+  left: 110px;
 }

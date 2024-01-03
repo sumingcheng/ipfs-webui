@@ -14,7 +14,10 @@ import FileIcon from '../file-icon/FileIcon.js'
 import { CID } from 'multiformats/cid'
 import { NativeTypes } from 'react-dnd-html5-backend'
 import PinIcon from '../pin-icon/PinIcon.js'
-import { Button } from 'antd'
+import { Modal, Form, Input, Button } from 'antd'
+import usePostAppAdd from '../../hooks/api.js'
+import { SketchPicker } from 'react-color'
+import '../../css/style.css'
 
 const File = ({
   name,
@@ -153,6 +156,38 @@ const File = ({
     'o-70 glow': !cantSelect,
     'o-1': selected || focused
   }, ['pl2 w2'])
+  /* 调色盘 */
+  const [color, setColor] = React.useState('#fff')
+  const [showPicker, setShowPicker] = React.useState(false)
+
+  const handleColorChange = (color) => {
+    setColor(color.hex)
+    form.setFieldsValue({ logo: color.hex })
+    setShowPicker(false)
+  }
+
+  /* 弹窗逻辑 */
+  const [isModalVisible, setIsModalVisible] = React.useState(false)
+  const [form] = Form.useForm()
+  const { postAppAdd } = usePostAppAdd()
+
+  const showModal = () => {
+    setIsModalVisible(true)
+  }
+
+  const handleOk = async () => {
+    try {
+      const values = await form.validateFields()
+      await postAppAdd(values)
+      setIsModalVisible(false)
+    } catch (errorInfo) {
+      console.log('Failed:', errorInfo)
+    }
+  }
+
+  const handleCancel = () => {
+    setIsModalVisible(false)
+  }
 
   return (
     <div ref={drop}>
@@ -201,9 +236,9 @@ const File = ({
         <div className="size pl2 pr4 pv1 flex-none f6 dn db-l tr charcoal-muted w-10 mw4">
           {size}
         </div>
-        {/* 广播 */}
+        {/* 操作 */}
         <div className="size pl2 pr4 pv1 flex-none f6 dn db-l tc charcoal-muted w-10 mw4">
-          <Button type="text" >广播</Button>
+          <Button type="text" onClick={showModal}>广播</Button>
         </div>
         {/* ... */}
         <button ref={dotsWrapper} className="ph2 db button-inside-focus file-context-menu" style={{ width: '2.5rem' }}
@@ -211,6 +246,29 @@ const File = ({
           <GlyphDots className="fill-gray-muted pointer hover-fill-gray transition-all"/>
         </button>
       </div>
+      <Modal title="新增应用" open={isModalVisible} onOk={handleOk} onCancel={handleCancel} okText="确认"
+             cancelText="取消">
+        <Form form={form} layout="vertical">
+          <Form.Item name="appIpfsHash" label="文件CID" rules={[{ required: true, message: '请输入 CID ' }]}>
+            <Input />
+          </Form.Item>
+          <Form.Item name="appName" label="文件标题" rules={[{ required: true, message: '请输入文件标题' }]}>
+            <Input />
+          </Form.Item>
+          <Form.Item name="fileSize" label="文件大小" rules={[{ required: true, message: '请输入文件大小' }]}>
+            <Input type="number" />
+          </Form.Item>
+          <Form.Item name="introduce" label="描述" rules={[{ required: true, message: '请输入描述' }]}>
+            <Input.TextArea />
+          </Form.Item>
+          <Form.Item name="logo" label="Logo" rules={[{ required: true, message: '请输入颜色' }]}>
+            <Input value={color} onClick={() => setShowPicker(true)} readOnly />
+            {showPicker && (
+              <SketchPicker color={color} onChangeComplete={handleColorChange} className={'formPicker'}/>
+            )}
+          </Form.Item>
+        </Form>
+      </Modal>
     </div>
   )
 }
