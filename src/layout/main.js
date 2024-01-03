@@ -28,8 +28,7 @@ export class App extends Component {
     doUpdateHash: PropTypes.func.isRequired,
     doFilesWrite: PropTypes.func.isRequired,
     routeInfo: PropTypes.object.isRequired,
-    filesPathInfo: PropTypes.object,
-    // Injected by DropTarget
+    filesPathInfo: PropTypes.object, // Injected by DropTarget
     isOver: PropTypes.bool.isRequired
   }
 
@@ -76,21 +75,21 @@ export class App extends Component {
       showTooltip
     } = this.props
 
-    return connectDropTarget(
-      // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
-      <div className="sans-serif h-100 relative" onClick={getNavHelper(this.props.doUpdateUrl)}>
+    return connectDropTarget(// eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
+      <div className="sans-serif mainStyle relative" onClick={getNavHelper(this.props.doUpdateUrl)}>
         {/* Tinted overlay that appears when dragging and dropping an item */}
         {canDrop && isOver &&
           <div className="h-100 top-0 right-0 fixed appOverlay" style={{ background: 'rgba(99, 202, 210, 0.2)' }}/>}
-        <div className="flex flex-row-reverse-l flex-column-reverse justify-end justify-start-l"
-             style={{ minHeight: '100vh' }}>
+        <div className="flex flex-row-reverse-l 1flex-column-reverse justify-end justify-start-l"
+             style={{ minHeight: '100vh-60px' }}>
           <div className="flex-auto-l">
             <div className="flex items-center ph3 ph4-l" style={{
               WebkitAppRegion: 'drag',
               height: 75,
               background: '#F0F6FA',
               paddingTop: '20px',
-              paddingBottom: '15px'
+              paddingBottom: '15px',
+              display: 'none'
             }}>
               <div className="joyride-app-explore" style={{ width: 560 }}>
                 <FilesExploreForm onBrowse={doFilesNavigateTo} onInspect={doExploreUserProvidedPath}/>
@@ -113,10 +112,7 @@ export class App extends Component {
               </div>
             </div>
             <main className="bg-white pv3 pa3 pa4-l">
-              {(ipfsReady || url === '/welcome' || url.startsWith('/settings'))
-                ? <Page/>
-                : <ComponentLoader/>
-              }
+              {(ipfsReady || url === '/welcome' || url.startsWith('/settings')) ? <Page/> : <ComponentLoader/>}
             </main>
           </div>
           <div className="navbar-container flex-none-l bg-navy">
@@ -135,8 +131,7 @@ export class App extends Component {
         />
 
         <Notify/>
-      </div>
-    )
+      </div>)
   }
 }
 
@@ -160,19 +155,4 @@ const dropCollect = (connect, monitor) => ({
 
 export const AppWithDropTarget = DropTarget(NativeTypes.FILE, dropTarget, dropCollect)(App)
 
-export default connect(
-  'selectRoute',
-  'selectRouteInfo',
-  'selectIpfsReady',
-  'selectShowTooltip',
-  'doFilesNavigateTo',
-  'doExploreUserProvidedPath',
-  'doUpdateUrl',
-  'doUpdateHash',
-  'doTryInitIpfs',
-  'doInitHelia',
-  'doFilesWrite',
-  'doDisableTooltip',
-  'selectFilesPathInfo',
-  withTranslation('app')(AppWithDropTarget)
-)
+export default connect('selectRoute', 'selectRouteInfo', 'selectIpfsReady', 'selectShowTooltip', 'doFilesNavigateTo', 'doExploreUserProvidedPath', 'doUpdateUrl', 'doUpdateHash', 'doTryInitIpfs', 'doInitHelia', 'doFilesWrite', 'doDisableTooltip', 'selectFilesPathInfo', withTranslation('app')(AppWithDropTarget))
