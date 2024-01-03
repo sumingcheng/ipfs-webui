@@ -75,7 +75,7 @@ class Header extends React.Component {
                          onContextMenuHandle={(...args) => this.handleBreadCrumbsContextMenu(...args)}
                          onAddFiles={this.props.onAddFiles} onMove={this.props.onMove}/>
           </div>
-          <div className="mb3 flex justify-between items-center bg-snow-muted joyride-files-add">
+          <div className="mb3 flex justify-between items-center joyride-files-add">
             {pinsInQueue > 0 && <a href="#/pins" alt={t('pinningQueue')} title={t('pinningQueue')} className="ml3">
               <GlyphPinCloud
                 style={{ width: '3rem' }}
