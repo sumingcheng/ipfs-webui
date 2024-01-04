@@ -5,7 +5,7 @@
 @import "./css/ipfs.css";
 
 body {
-  overflow-y: scroll;
+  /*overflow-y: scroll;*/
 }
 
 .placeholder-light::placeholder{

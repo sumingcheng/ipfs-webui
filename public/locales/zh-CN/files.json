@@ -64,7 +64,7 @@
   },
   "filesListLabel": "文件列表",
   "filesList": {
-    "noFiles": "<0>这个目录下没有文件，可单击“导入”按钮加入一些文件</0>"
+    "noFiles": "<0>这个目录下没有文件，可单击“上传模型包文件”按钮加入一些文件</0>"
   },
   "filesImportStatus": {
     "imported": "{count, plural, other {已导入{count}项目}}",
@@ -73,7 +73,7 @@
     "closeDropdown": "关闭下拉框",
     "count": "{count}个 / 共{count}个"
   },
-  "addFilesInfo": "<0>现在还没有任何文件！使用上方的<1>导入</1>按钮为您的本地IPFS 节点添加文件。</0>",
+  "addFilesInfo": "<0>现在还没有任何文件！使用上方的<1>上传模型包文件</1>按钮为您的本地IPFS 节点添加文件。</0>",
   "companionInfo": "<0>如果您正在使用<1> IPFS 伴侣</1>，文件视图仅限于使用扩展程序时添加的文件。</0>",
   "tour": {
     "step1": {
