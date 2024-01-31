@@ -27,7 +27,7 @@ const App = () => {
         placement="bottomLeft"
         arrow
       >
-        <Button>···</Button>
+        <Button>•••</Button>
       </Dropdown>
     </div>
   )

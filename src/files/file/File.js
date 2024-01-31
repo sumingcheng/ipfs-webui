@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { join, basename } from 'path'
 import { withTranslation } from 'react-i18next'
 import classnames from 'classnames'
-import { normalizeFiles, humanSize } from '../../lib/files.js'
+import { normalizeFiles, humanSize, sizeToBytes } from '../../lib/files.js'
 // React DnD
 import { useDrag, useDrop } from 'react-dnd'
 // Components
@@ -14,11 +14,11 @@ import FileIcon from '../file-icon/FileIcon.js'
 import { CID } from 'multiformats/cid'
 import { NativeTypes } from 'react-dnd-html5-backend'
 import PinIcon from '../pin-icon/PinIcon.js'
-import { Modal, Form, Input, Button } from 'antd'
+import { Modal, Form, Input, Button, Select } from 'antd'
 import usePostAppAdd from '../../hooks/api.js'
 import { SketchPicker } from 'react-color'
 import '../../css/style.css'
-
+const { Option } = Select
 const File = ({
   name,
   type,
@@ -160,10 +160,10 @@ const File = ({
   const [color, setColor] = React.useState('')
   const [showPicker, setShowPicker] = React.useState(false)
 
-  const handleColorChange = (color) => {
-    setColor(color.hex)
-    form.setFieldsValue({ logo: color.hex })
-    setShowPicker(false)
+  const handleColorChange = (value) => {
+    // setColor(color.hex)
+    form.setFieldsValue({ logo: value })
+    // setShowPicker(false)
   }
 
   /* 弹窗逻辑 */
@@ -171,10 +171,11 @@ const File = ({
   const [form] = Form.useForm()
   const { postAppAdd } = usePostAppAdd()
 
-  const showModal = (appIpfsHash, appName) => {
+  const showModal = (appIpfsHash, appName, size) => {
     form.setFieldsValue({
       appIpfsHash: appIpfsHash.toString(),
-      appName
+      appName,
+      fileSize: sizeToBytes(size)
     })
     setIsModalVisible(true)
   }
@@ -242,7 +243,7 @@ const File = ({
         </div>
         {/* 操作 */}
         <div className="size pl2 pr4 pv1 flex-none f6 dn db-l tc charcoal-muted w-10 mw4">
-          <Button type="text" onClick={() => showModal(cid, name)}>广播</Button>
+          <Button type="text" onClick={() => showModal(cid, name, size)}>广播</Button>
         </div>
         {/* ... */}
         <button ref={dotsWrapper} className="ph2 db button-inside-focus file-context-menu" style={{ width: '2.5rem' }}
@@ -253,23 +254,36 @@ const File = ({
       <Modal title="广播到应用市场" open={isModalVisible} onOk={handleOk} onCancel={handleCancel} okText="提交"
              cancelText="取消">
         <Form form={form} layout="vertical">
-          <Form.Item name="appIpfsHash" label="文件CID" rules={[{ required: true, message: '请输入 CID ' }]}>
-            <Input />
+          <Form.Item name="appIpfsHash" label="文件CID" rules={[{
+            required: true,
+            message: '请输入 CID '
+          }]}>
+            <Input disabled/>
           </Form.Item>
-          <Form.Item name="appName" label="文件标题" rules={[{ required: true, message: '请输入文件标题' }]}>
-            <Input />
+          <Form.Item name="appName" label="文件标题" rules={[{
+            required: true,
+            message: '请输入文件标题'
+          }]}>
+            <Input/>
           </Form.Item>
-          <Form.Item name="fileSize" label="文件大小" rules={[{ required: true, message: '请输入文件大小' }]}>
-            <Input type="number" />
+          <Form.Item name="fileSize" label="文件大小" rules={[{
+            required: true,
+            message: '请输入文件大小'
+          }]}>
+            <Input disabled />
           </Form.Item>
-          <Form.Item name="introduce" label="描述" rules={[{ required: true, message: '请输入描述' }]}>
-            <Input.TextArea />
+          <Form.Item name="introduce" label="模型描述" rules={[{
+            required: true,
+            message: '请输入描述'
+          }]}>
+            <Input.TextArea/>
           </Form.Item>
-          <Form.Item name="logo" label="Logo" rules={[{ required: true, message: '请输入颜色' }]}>
-            <Input value={color} onClick={() => setShowPicker(true)} readOnly />
-            {showPicker && (
-              <SketchPicker color={color} onChangeComplete={handleColorChange} className={'formPicker'}/>
-            )}
+          <Form.Item name="logo" label="模型底色" rules={[{ required: true, message: '请选择一个底色' }]}>
+            <Select onChange={handleColorChange} placeholder="选择底色">
+              <Option value="1">碧波蓝</Option>
+              <Option value="2">翠绿蓝</Option>
+              <Option value="3">紫霞粉</Option>
+            </Select>
           </Form.Item>
         </Form>
       </Modal>

@@ -151,3 +151,37 @@ export function humanSize (size, opts) {
     ...opts
   })
 }
+
+/**
+ * @type {{ [unit: string]: number }}
+ */
+const UNITS = {
+  B: 1,
+  KiB: 2 ** 10,
+  MiB: 2 ** 20,
+  GiB: 2 ** 30,
+  TiB: 2 ** 40,
+  PiB: 2 ** 50,
+  EiB: 2 ** 60,
+  ZiB: 2 ** 70,
+  YiB: 2 ** 80
+}
+
+/**
+ * @param {string} humanReadableSize
+ */
+export function sizeToBytes (humanReadableSize) {
+  if (humanReadableSize === 'N/A') return null
+
+  const regex = /([\d.]+)\s*(\w+)/
+  const matches = humanReadableSize.match(regex)
+
+  if (!matches) return null
+
+  const value = parseFloat(matches[1])
+  const unit = matches[2]
+
+  if (!UNITS[unit]) return null
+
+  return Math.floor(value * UNITS[unit])
+}
