@@ -28,11 +28,11 @@ class FileInput extends React.Component {
 
     return (
       <div className={this.props.className}>
-        <Button id="add-file" bg="bg-navy" color="white" className="textButton f6 flex justify-center items-center"
-                minWidth="100px">
-          {/* <DocumentIcon className='fill-aqua w2 mr1' /> */}
-          {'获取站外模型'}
-        </Button>
+        {/* <Button id="add-file" bg="bg-navy" color="white" className="textButton f6 flex justify-center items-center" */}
+        {/*         minWidth="100px"> */}
+        {/*   /!* <DocumentIcon className='fill-aqua w2 mr1' /> *!/ */}
+        {/*   {'获取站外模型'} */}
+        {/* </Button> */}
 
         <Button id="add-file" bg="bg-navy" color="white" className="textButton f6 flex justify-center items-center"
                 minWidth="100px" onClick={() => this.folderInput.click()}>

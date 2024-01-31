@@ -31,7 +31,7 @@ async function render () {
             theme={{
               token: {
                 colorPrimary: '#3c63e3',
-                borderRadius: 2
+                borderRadius: 4
               }
             }}>
             <App/>

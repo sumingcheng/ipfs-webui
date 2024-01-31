@@ -125,6 +125,16 @@ function webpackOverride (config) {
     config.devtool = 'source-map'
   }
 
+  // 增加对css的处理
+  // config.module.rules.push({
+  //   test: /\.less$/,
+  //   use: [
+  //     'style-loader', // 将 JS 字符串创建为 style 节点
+  //     'css-loader', // 将 CSS 转化成 CommonJS 模块
+  //     'less-loader' // 将 Less 编译成 CSS
+  //   ]
+  // })
+
   return config
 }
 
