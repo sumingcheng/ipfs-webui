@@ -2,6 +2,23 @@
   border-bottom: 5px solid rgba(201, 210, 215, .4);
 }
 
+/* 激活状态标签 */
+.navbar-item-active,
+.svgStroke-active {
+  color: #3649F9; /* 激活状态的颜色 */
+}
+
+/* 非激活状态的标签样式 */
+.navbar-item-inactive,
+.svgStroke-inactive {
+  color: #0C296E; /* 非激活状态的颜色 */
+}
+
+.svgStroke {
+  stroke: currentColor; /* 使描边颜色与填充颜色相同 */
+  stroke-width: 1; /* 增加描边的宽度 */
+}
+
 @media only screen and (min-width: 60em) {
   .navbar-container {
     width: 130px;
@@ -12,16 +29,16 @@
   .navbar-item-active {
     border-left: 5px solid rgba(201, 210, 215, .4);
     border-bottom: 0;
-    background-color: #2853e0 !important;
-    color: white !important;
+    background: rgba(54, 73, 249, 0.12) !important;
     font-weight: bold !important;
-    border-radius: 5px;
+    border-radius: 4px;
   }
 
   .navbar-item {
     border-left: 5px solid rgba(201, 210, 215, .4);
     border-bottom: 0;
-    color: black;
+    font-size: 14px;
+    font-weight: bold;
   }
 
   /*.navbar-item:hover {*/
@@ -52,6 +69,6 @@
   }
 }
 
-.icon{
+.icon {
   padding: 0 1.3rem 1rem;
 }
