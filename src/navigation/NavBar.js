@@ -73,7 +73,7 @@ export const NavBar = ({ t }) => {
       width: 'inherit'
     }}>
       <div className="flex flex-column">
-        <a href="#/welcome" role="menuitem" title={t('welcome:description')} style={{ height: '10px' }}>
+        <a href="#/welcome" role="menuitem" title={t('welcome:description')} style={{ height: '3px' }}>
           <div className="pt3 pb1 pb2-l icon" style={{ display: 'none' }}>
             <img className="navbar-logo-vert center db-l dn pt3 pb1" style={{ height: 94 }}
                  src={ipfsLogoTextVert}
@@ -82,7 +82,7 @@ export const NavBar = ({ t }) => {
                  src={ipfsLogoTextHoriz} alt=""/>
           </div>
         </a>
-        <div className="db overflow-x-scroll overflow-x-hidden-l nowrap tc" role="menubar">
+        <div className="db overflow-x-scroll overflow-x-hidden-l nowrap tc ml1 mr1" role="menubar">
           <NavLink to="/files" icon={StrokeWeb}>{t('files:title')}</NavLink>
           <NavLink to="/" alternative="status" icon={StrokeMarketing}>{t('status:title')}</NavLink>
           <NavLink to="/explore" icon={StrokeIpld}>{t('explore:tabName')}</NavLink>

@@ -1,5 +1,5 @@
 .navbar-item-active {
-  border-bottom: 5px solid rgba(201, 210, 215, .4);
+  /*border-bottom: 5px solid rgba(201, 210, 215, .4);*/
 }
 
 /* 激活状态标签 */
@@ -24,10 +24,11 @@
     width: 130px;
     background-color: white;
     color: black;
+    box-shadow: 8px 10px 15px 0px rgba(54, 73, 249, 0.06);
   }
 
   .navbar-item-active {
-    border-left: 5px solid rgba(201, 210, 215, .4);
+    /*border-left: 5px solid rgba(201, 210, 215, .4);*/
     border-bottom: 0;
     background: rgba(54, 73, 249, 0.12) !important;
     font-weight: bold !important;
@@ -35,7 +36,7 @@
   }
 
   .navbar-item {
-    border-left: 5px solid rgba(201, 210, 215, .4);
+    /*border-left: 5px solid rgba(201, 210, 215, .4);*/
     border-bottom: 0;
     font-size: 14px;
     font-weight: bold;
