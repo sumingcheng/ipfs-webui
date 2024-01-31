@@ -68,7 +68,7 @@ export const NavBar = ({ t }) => {
   const gitRevision = process.env.REACT_APP_GIT_REV
   const revisionUrl = `${codeUrl}/commit/${gitRevision}`
   return (
-    <div className="h-100 fixed-l flex flex-column justify-between" style={{
+    <div className="h-100 fixed-l flex flex-column justify-between navBg" style={{
       overflowY: 'auto',
       width: 'inherit'
     }}>
