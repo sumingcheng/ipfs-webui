@@ -39,7 +39,7 @@ const App = () => {
     <Router>
       <Row className={'menuRow'}>
         <Col span={8}>
-          <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" className={'main'}
+          <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" className={'menuMain'}
                 items={menuItems}/>
         </Col>
         <Col span={8}></Col>

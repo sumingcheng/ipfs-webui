@@ -76,7 +76,7 @@ export class App extends Component {
     } = this.props
 
     return connectDropTarget(// eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
-      <div className="sans-serif mainStyle relative" onClick={getNavHelper(this.props.doUpdateUrl)}>
+      <div className="sans-serif relative" onClick={getNavHelper(this.props.doUpdateUrl)}>
         {/* Tinted overlay that appears when dragging and dropping an item */}
         {canDrop && isOver &&
           <div className="h-100 top-0 right-0 fixed appOverlay" style={{ background: 'rgba(99, 202, 210, 0.2)' }}/>}
@@ -111,7 +111,7 @@ export class App extends Component {
                 <Connected className="joyride-app-status"/>
               </div>
             </div>
-            <main className="bg-white pv3 pa3 pa4-l">
+            <main className="bg-white pv3 pa4-l mainStyle">
               {(ipfsReady || url === '/welcome' || url.startsWith('/settings')) ? <Page/> : <ComponentLoader/>}
             </main>
           </div>

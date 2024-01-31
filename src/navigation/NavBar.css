@@ -20,7 +20,7 @@
 
 .svgStroke {
   stroke: currentColor; /* 使描边颜色与填充颜色相同 */
-  stroke-width: 1; /* 增加描边的宽度 */
+  stroke-width: 2; /* 增加描边的宽度 */
 }
 
 @media only screen and (min-width: 60em) {

@@ -97,7 +97,7 @@ class Header extends React.Component {
             {/*   {size(repoSize)} */}
             {/* </BarOption> */}
 
-            <div className="pa3 btn3w">
+            <div className="pa3 btnItems">
               <div className="ml-auto flex items-center">
                 {(files && files.type === 'directory' && filesPathInfo.isMfs)
                   ? <FileInput

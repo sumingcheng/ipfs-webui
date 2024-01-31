@@ -45,6 +45,7 @@ const NavLink = ({
         <div className={`${active ? 'o-100' : 'o-50'} db f6 tc montserrat ttu fw1 `} style={{
           whiteSpace: 'pre-wrap',
           fontSize: '14px',
+          fontWeight: 'bold',
           lineHeight: '20px',
           marginLeft: '10px',
           marginTop: '1px'

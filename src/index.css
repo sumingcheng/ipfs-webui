@@ -6,9 +6,10 @@
 
 body {
   /*overflow-y: scroll;*/
+  background-color: #f2f3f5;
 }
 
-.placeholder-light::placeholder{
+.placeholder-light::placeholder {
   color: #CAD3D8;
 }
 
@@ -26,7 +27,7 @@ html, body, #root {
 
 @media only screen and (min-width: 60em) {
   .appOverlay {
-      width: calc(100% - 148px)
+    width: calc(100% - 148px)
   }
 }
 
