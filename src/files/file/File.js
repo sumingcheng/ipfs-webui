@@ -14,7 +14,7 @@ import FileIcon from '../file-icon/FileIcon.js'
 import { CID } from 'multiformats/cid'
 import { NativeTypes } from 'react-dnd-html5-backend'
 import PinIcon from '../pin-icon/PinIcon.js'
-import { Modal, Form, Input, Button, Select } from 'antd'
+import { Modal, Form, Input, Button, Select, message } from 'antd'
 import usePostAppAdd from '../../hooks/api.js'
 import '../../css/style.css'
 
@@ -167,9 +167,10 @@ const File = ({
   }
 
   const handleType = (value) => {
-    // setColor(color.hex)
-    form.setFieldsValue({ type: value })
-    // setShowPicker(false)
+    if (value === 'other') {
+      message.warning('上传非标准模型可能会导致应用无法正常对话')
+    }
+    form.setFieldsValue({ modelType: value })
   }
 
   /* 弹窗逻辑 */
@@ -277,14 +278,15 @@ const File = ({
           }]}>
             <Input/>
           </Form.Item>
-          <Form.Item name="type" label="应用类型" rules={[{
+          <Form.Item name="modelType" label="应用类型" rules={[{
             required: true,
             message: '请选择一个应用类型'
           }]}>
             <Select onChange={handleType} placeholder="选择应用类型">
-              <Option value="1">1</Option>
-              <Option value="2">2</Option>
-              <Option value="3">3</Option>
+              <Option value="Baichuan2-7B-Chat">Baichuan2-7B-Chat</Option>
+              <Option value="chatglm2-6b">chatglm2-6b</Option>
+              <Option value="Qwen-7B-Chat">Qwen-7B-Chat</Option>
+              <Option value="other">其他</Option>
             </Select>
           </Form.Item>
           <Form.Item name="fileSize" label="模型大小" rules={[{
