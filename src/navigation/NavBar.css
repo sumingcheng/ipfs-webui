@@ -2,7 +2,8 @@
   /*border-bottom: 5px solid rgba(201, 210, 215, .4);*/
 }
 
-.navBg{
+.navBg {
+  background-color: #fff;
   box-shadow: 8px 10px 15px 0px rgba(54, 73, 249, 0.06);
 }
 

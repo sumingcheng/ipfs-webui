@@ -18,6 +18,7 @@ import { Modal, Form, Input, Button, Select } from 'antd'
 import usePostAppAdd from '../../hooks/api.js'
 import { SketchPicker } from 'react-color'
 import '../../css/style.css'
+
 const { Option } = Select
 const File = ({
   name,
@@ -166,8 +167,16 @@ const File = ({
     // setShowPicker(false)
   }
 
+  const handleType = (value) => {
+    // setColor(color.hex)
+    form.setFieldsValue({ type: value })
+    // setShowPicker(false)
+  }
+
   /* 弹窗逻辑 */
   const [isModalVisible, setIsModalVisible] = React.useState(false)
+  const [confirmLoading, setConfirmLoading] = React.useState(false)
+
   const [form] = Form.useForm()
   const { postAppAdd } = usePostAppAdd()
 
@@ -181,9 +190,11 @@ const File = ({
   }
 
   const handleOk = async () => {
+    setConfirmLoading(true)
     try {
       const values = await form.validateFields()
       await postAppAdd(values)
+      setConfirmLoading(false)
       setIsModalVisible(false)
     } catch (errorInfo) {
       console.log('Failed:', errorInfo)
@@ -251,35 +262,48 @@ const File = ({
           <GlyphDots className="fill-gray-muted pointer hover-fill-gray transition-all"/>
         </button>
       </div>
-      <Modal title="广播到应用市场" open={isModalVisible} onOk={handleOk} onCancel={handleCancel} okText="提交"
-             cancelText="取消">
+      <Modal style={{ top: 20 }} title="广播到应用商店" open={isModalVisible} onOk={handleOk} onCancel={handleCancel}
+             okText="提交" cancelText="取消" confirmLoading={confirmLoading}>
         <Form form={form} layout="vertical">
-          <Form.Item name="appIpfsHash" label="文件CID" rules={[{
+          <Form.Item name="appIpfsHash" label="模型 CID" rules={[{
             required: true,
-            message: '请输入 CID '
+            message: '请输入 CID'
           }]}>
             <Input disabled/>
           </Form.Item>
-          <Form.Item name="appName" label="文件标题" rules={[{
+          <Form.Item name="appName" label="模型名称" rules={[{
             required: true,
-            message: '请输入文件标题'
+            message: '请输入模型名称'
           }]}>
             <Input/>
           </Form.Item>
-          <Form.Item name="fileSize" label="文件大小" rules={[{
+          <Form.Item name="type" label="应用类型" rules={[{
             required: true,
-            message: '请输入文件大小'
+            message: '请选择一个应用类型'
           }]}>
-            <Input disabled />
+            <Select onChange={handleType} placeholder="选择应用类型">
+              <Option value="1">1</Option>
+              <Option value="2">2</Option>
+              <Option value="3">3</Option>
+            </Select>
           </Form.Item>
-          <Form.Item name="introduce" label="模型描述" rules={[{
+          <Form.Item name="fileSize" label="模型大小" rules={[{
             required: true,
-            message: '请输入描述'
+            message: '请输入模型大小'
+          }]}>
+            <Input disabled/>
+          </Form.Item>
+          <Form.Item name="introduce" label="应用描述" rules={[{
+            required: true,
+            message: '请输入应用描述'
           }]}>
             <Input.TextArea/>
           </Form.Item>
-          <Form.Item name="logo" label="模型底色" rules={[{ required: true, message: '请选择一个底色' }]}>
-            <Select onChange={handleColorChange} placeholder="选择底色">
+          <Form.Item name="logo" label="应用图标颜色" rules={[{
+            required: true,
+            message: '请选择一个应用图标颜色'
+          }]}>
+            <Select onChange={handleColorChange} placeholder="选择应用图标颜色">
               <Option value="1">碧波蓝</Option>
               <Option value="2">翠绿蓝</Option>
               <Option value="3">紫霞粉</Option>

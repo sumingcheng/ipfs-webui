@@ -42,10 +42,9 @@ const NavLink = ({
         <div className="db">
           <Svg width="22" role="presentation" className={svgClass}/>
         </div>
-        <div className={`${active ? 'o-100' : 'o-50'} db f6 tc montserrat ttu fw1 `} style={{
+        <div className={`${active ? 'o-100' : 'o-100'} db f6 tc montserrat ttu fw1 `} style={{
           whiteSpace: 'pre-wrap',
           fontSize: '14px',
-          fontWeight: 'bold',
           lineHeight: '20px',
           marginLeft: '10px',
           marginTop: '1px'
