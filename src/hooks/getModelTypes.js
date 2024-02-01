@@ -5,7 +5,7 @@ const API_URL = 'http://172.40.253.155:15000'
 // const token = '33f5b809-496a-4f7c-bd6c-94024d10d414'
 
 const useGetModelTypes = () => {
-  const [data, setData] = useState(null)
+  const [data, setData] = useState([])
   const [error, setError] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
 
@@ -22,7 +22,7 @@ const useGetModelTypes = () => {
       }
 
       if (result.code === 200) {
-        setData(result)
+        setData(result.data.types)
         // message.success(result.msg || '添加成功') // 显示成功提示
       } else {
         message.error(result.msg || '获取模型列表失败') // 显示错误提示

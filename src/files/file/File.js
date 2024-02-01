@@ -180,6 +180,10 @@ const File = ({
   const [confirmLoading, setConfirmLoading] = React.useState(false)
   const [modelList, setModelList] = React.useState([])
 
+  React.useEffect(() => {
+    getModelTypes()
+  }, [])
+
   const [form] = Form.useForm()
   const { postAppAdd } = usePostAppAdd()
 
@@ -190,12 +194,6 @@ const File = ({
       fileSize: sizeToBytes(size)
     })
     setIsModalVisible(true)
-
-    await getModelTypes()
-    if (data) {
-      console.log(data.data.types)
-      setModelList(data.data.types)
-    }
   }
 
   const handleOk = async () => {
@@ -293,7 +291,7 @@ const File = ({
             message: '请选择一个应用类型'
           }]}>
             <Select onChange={handleType} placeholder="选择应用类型">
-              {modelList.map((item) => {
+              {data.map((item) => {
                 return <Option key={item} value={item}>{item}</Option>
               })}
               <Option value="other">其他</Option>
