@@ -52,13 +52,10 @@
   height: calc(100vh - 70px);
   margin: 10px 10px 10px;
   border-radius: 8px;
-}
-
-/* 定义滚动条的样式 */
-.mainStyle {
   overflow-y: auto; /* 显示垂直滚动条 */
   scrollbar-width: thin; /* Firefox */
   scrollbar-color: #E9E9E9 transparent; /* Firefox */
+  padding: 16px;
 }
 
 /* 定制滚动条的样式（对于 Chrome, Edge, Safari） */

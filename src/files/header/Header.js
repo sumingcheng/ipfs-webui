@@ -67,15 +67,15 @@ class Header extends React.Component {
 
     return (
       <div>
-        <div className="db flex-l justify-between items-center">
-          <div className="mb3 overflow-hidden mr2">
+        <div className="db flex-l justify-between items-center mb3">
+          <div className="overflow-hidden">
             <div className={'font16'}>模型文件存储</div>
-            <Breadcrumbs className="joyride-files-breadcrumbs" path={files ? files.path : '/404'}
-                         onClick={onNavigate}
-                         onContextMenuHandle={(...args) => this.handleBreadCrumbsContextMenu(...args)}
-                         onAddFiles={this.props.onAddFiles} onMove={this.props.onMove}/>
+            {/* <Breadcrumbs className="joyride-files-breadcrumbs" path={files ? files.path : '/404'} */}
+            {/*              onClick={onNavigate} */}
+            {/*              onContextMenuHandle={(...args) => this.handleBreadCrumbsContextMenu(...args)} */}
+            {/*              onAddFiles={this.props.onAddFiles} onMove={this.props.onMove}/> */}
           </div>
-          <div className="mb3 flex justify-between items-center joyride-files-add">
+          <div className="flex justify-between items-center joyride-files-add">
             {pinsInQueue > 0 && <a href="#/pins" alt={t('pinningQueue')} title={t('pinningQueue')} className="ml3">
               <GlyphPinCloud
                 style={{ width: '3rem' }}
@@ -97,7 +97,7 @@ class Header extends React.Component {
             {/*   {size(repoSize)} */}
             {/* </BarOption> */}
 
-            <div className="pa3 btnItems">
+            <div className="btnItems">
               <div className="ml-auto flex items-center">
                 {(files && files.type === 'directory' && filesPathInfo.isMfs)
                   ? <FileInput

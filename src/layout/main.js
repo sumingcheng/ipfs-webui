@@ -111,7 +111,7 @@ export class App extends Component {
                 <Connected className="joyride-app-status"/>
               </div>
             </div>
-            <main className="bg-white pv3 pa4-l mainStyle">
+            <main className="bg-white pv3 mainStyle">
               {(ipfsReady || url === '/welcome' || url.startsWith('/settings')) ? <Page/> : <ComponentLoader/>}
             </main>
           </div>
