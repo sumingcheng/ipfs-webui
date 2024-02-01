@@ -49,7 +49,30 @@
 }
 
 .mainStyle {
-  height: calc(100vh - 60px);
-  margin: 0 10px 10px;
+  height: calc(100vh - 70px);
+  margin: 10px 10px 10px;
   border-radius: 8px;
 }
+
+/* 定义滚动条的样式 */
+.mainStyle {
+  overflow-y: auto; /* 显示垂直滚动条 */
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: #E9E9E9 transparent; /* Firefox */
+}
+
+/* 定制滚动条的样式（对于 Chrome, Edge, Safari） */
+.mainStyle::-webkit-scrollbar {
+  width: 8px; /* 滚动条的宽度 */
+}
+
+.mainStyle::-webkit-scrollbar-track {
+  background: transparent; /* 滚动条轨道的颜色 */
+}
+
+.mainStyle::-webkit-scrollbar-thumb {
+  background-color: #E9E9E9; /* 滚动条滑块的颜色 */
+  border-radius: 10px; /* 滚动条滑块的圆角 */
+  border: 2px solid transparent; /* 滚动条滑块边框颜色 */
+}
+
