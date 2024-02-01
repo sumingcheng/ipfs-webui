@@ -23,12 +23,12 @@ const usePostAppAdd = () => {
 
       const result = await response.json()
       if (!response.ok) {
-        throw new Error(result.msg || '网络响应失败')
+        throw new Error(result.msg || '请求响应失败')
       }
 
       setData(result)
       if (result.code === 200) {
-        message.success('添加成功') // 显示成功提示
+        message.success(result.msg || '添加成功') // 显示成功提示
       } else {
         message.error(result.msg || '操作失败') // 显示错误提示
       }

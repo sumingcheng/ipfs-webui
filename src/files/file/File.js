@@ -16,7 +16,6 @@ import { NativeTypes } from 'react-dnd-html5-backend'
 import PinIcon from '../pin-icon/PinIcon.js'
 import { Modal, Form, Input, Button, Select } from 'antd'
 import usePostAppAdd from '../../hooks/api.js'
-import { SketchPicker } from 'react-color'
 import '../../css/style.css'
 
 const { Option } = Select
@@ -190,9 +189,10 @@ const File = ({
   }
 
   const handleOk = async () => {
-    setConfirmLoading(true)
     try {
+      setConfirmLoading(true)
       const values = await form.validateFields()
+      console.log('提交信息', values)
       await postAppAdd(values)
       setConfirmLoading(false)
       setIsModalVisible(false)
