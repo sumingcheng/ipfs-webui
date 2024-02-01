@@ -15,8 +15,9 @@ import { CID } from 'multiformats/cid'
 import { NativeTypes } from 'react-dnd-html5-backend'
 import PinIcon from '../pin-icon/PinIcon.js'
 import { Modal, Form, Input, Button, Select, message } from 'antd'
-import usePostAppAdd from '../../hooks/api.js'
+import usePostAppAdd from '../../hooks/addModel.js'
 import '../../css/style.css'
+import useGetModelTypes from '../../hooks/getModelTypes.js'
 
 const { Option } = Select
 const File = ({
@@ -157,8 +158,9 @@ const File = ({
     'o-1': selected || focused
   }, ['pl2 w2'])
   /* 调色盘 */
-  const [color, setColor] = React.useState('')
-  const [showPicker, setShowPicker] = React.useState(false)
+  // const [color, setColor] = React.useState('')
+  // const [showPicker, setShowPicker] = React.useState(false)
+  const { getModelTypes, data, error, isLoading } = useGetModelTypes()
 
   const handleColorChange = (value) => {
     // setColor(color.hex)
@@ -176,17 +178,24 @@ const File = ({
   /* 弹窗逻辑 */
   const [isModalVisible, setIsModalVisible] = React.useState(false)
   const [confirmLoading, setConfirmLoading] = React.useState(false)
+  const [modelList, setModelList] = React.useState([])
 
   const [form] = Form.useForm()
   const { postAppAdd } = usePostAppAdd()
 
-  const showModal = (appIpfsHash, appName, size) => {
+  const showModal = async (appIpfsHash, appName, size) => {
     form.setFieldsValue({
       appIpfsHash: appIpfsHash.toString(),
       appName,
       fileSize: sizeToBytes(size)
     })
     setIsModalVisible(true)
+
+    await getModelTypes()
+    if (data) {
+      console.log(data.data.types)
+      setModelList(data.data.types)
+    }
   }
 
   const handleOk = async () => {
@@ -194,6 +203,7 @@ const File = ({
       setConfirmLoading(true)
       const values = await form.validateFields()
       console.log('提交信息', values)
+      // 广播模型
       await postAppAdd(values)
       setConfirmLoading(false)
       setIsModalVisible(false)
@@ -283,9 +293,9 @@ const File = ({
             message: '请选择一个应用类型'
           }]}>
             <Select onChange={handleType} placeholder="选择应用类型">
-              <Option value="Baichuan2-7B-Chat">Baichuan2-7B-Chat</Option>
-              <Option value="chatglm2-6b">chatglm2-6b</Option>
-              <Option value="Qwen-7B-Chat">Qwen-7B-Chat</Option>
+              {modelList.map((item) => {
+                return <Option key={item} value={item}>{item}</Option>
+              })}
               <Option value="other">其他</Option>
             </Select>
           </Form.Item>
