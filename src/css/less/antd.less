@@ -1,5 +1,70 @@
-.primary_button {
-  background-color: #0aca9f;
+// 基础按钮样式
+.baseButtonStyle() {
+  width: 65px;
+  height: 26px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: normal;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 0px;
+  box-sizing: border-box;
+  color: #3649F9;
 }
 
+// 普通按钮样式
+.normalButton {
+  .baseButtonStyle();
+  background: #fff;
+  border: 1px solid #3649F9;
 
+  &:hover {
+    background-color: #e0e2f0;
+  }
+
+  &:active {
+    background-color: #d3d6f0;
+  }
+}
+
+// 高亮按钮样式
+.highlightButton {
+  .baseButtonStyle();
+  background: #fff;
+  border: 1px solid #3649F9;
+
+  &:hover {
+    background: rgba(54, 73, 249, 0.8);
+    color: #fff;
+    border: none;
+  }
+
+  &:active {
+    background: #3649F9;
+    color: #fff;
+    border: none;
+  }
+}
+
+// 确认按钮样式
+.doneButton {
+  .baseButtonStyle();
+  background: rgba(54, 73, 249, 0.1);
+
+  &:hover {
+    background: rgba(54, 73, 249, 0.2);
+  }
+
+  &:active {
+    background: rgba(54, 73, 249, 0.3);
+  }
+}
+
+// 设置按钮样式
+.settingButton {
+  .baseButtonStyle();
+  width: 39px; // 调整宽度以符合设置按钮的尺寸
+  background: #fff;
+  border: 1px solid #EBEFFD;
+}

@@ -1,3 +1,82 @@
-.primary_button {
-  background-color: #0aca9f;
+.normalButton {
+  width: 65px;
+  height: 26px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: normal;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 0px;
+  box-sizing: border-box;
+  color: #3649F9;
+  background: #fff;
+  border: 1px solid #3649F9;
+}
+.normalButton:hover {
+  background-color: #e0e2f0;
+}
+.normalButton:active {
+  background-color: #d3d6f0;
+}
+.highlightButton {
+  width: 65px;
+  height: 26px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: normal;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 0px;
+  box-sizing: border-box;
+  color: #3649F9;
+  background: #fff;
+  border: 1px solid #3649F9;
+}
+.highlightButton:hover {
+  background: rgba(54, 73, 249, 0.8);
+  color: #fff;
+  border: none;
+}
+.highlightButton:active {
+  background: #3649F9;
+  color: #fff;
+  border: none;
+}
+.doneButton {
+  width: 65px;
+  height: 26px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: normal;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 0px;
+  box-sizing: border-box;
+  color: #3649F9;
+  background: rgba(54, 73, 249, 0.1);
+}
+.doneButton:hover {
+  background: rgba(54, 73, 249, 0.2);
+}
+.doneButton:active {
+  background: rgba(54, 73, 249, 0.3);
+}
+.settingButton {
+  width: 65px;
+  height: 26px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: normal;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 0px;
+  box-sizing: border-box;
+  color: #3649F9;
+  width: 39px;
+  background: #fff;
+  border: 1px solid #EBEFFD;
 }
