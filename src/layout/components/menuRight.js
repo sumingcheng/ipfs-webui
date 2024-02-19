@@ -1,6 +1,7 @@
 import React from 'react'
 import { Button, Dropdown } from 'antd'
 import './index.css'
+import '../../css/less/antd.css'
 
 const items = [
   {
@@ -17,7 +18,7 @@ const App = () => {
   return (
     <div className={'menuButtons'}>
       <Button
-        type="primary" className={'myButton'}
+        type="primary" className={'myButton primary_button'}
         onClick={() => window.open('http://172.40.253.155:10001/#/mybox/downloaded', '_blank')}
       >我的Box</Button>
       <Dropdown

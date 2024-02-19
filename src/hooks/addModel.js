@@ -28,7 +28,7 @@ const usePostAppAdd = () => {
 
       setData(result)
       if (result.code === 200) {
-        message.success(result.msg || '添加成功') // 显示成功提示
+        message.success(result.msg || '模型正在上传到IPFS集群，请不要关闭客户端') // 显示成功提示
       } else {
         message.error(result.msg || '操作失败') // 显示错误提示
       }
