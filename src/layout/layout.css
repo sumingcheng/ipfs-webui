@@ -26,7 +26,7 @@
 }
 
 .fileNavMain {
-  border: 1px solid rgb(238, 238, 238);
+  /*border: 1px solid rgb(238, 238, 238);*/
   border-bottom: none;
 }
 
@@ -48,14 +48,17 @@
   margin-left: 20px;
 }
 
+.contentStyle{
+  margin: 16px;
+}
+
 .mainStyle {
   /*height: calc(100vh - 70px);*/
-  margin: 10px 10px 10px;
-  border-radius: 8px;
+  /*border-radius: 8px;*/
   overflow-y: auto; /* 显示垂直滚动条 */
   scrollbar-width: thin; /* Firefox */
   scrollbar-color: #E9E9E9 transparent; /* Firefox */
-  padding: 16px;
+  background-color: #f2f3f5;
 }
 
 /* 定制滚动条的样式（对于 Chrome, Edge, Safari） */

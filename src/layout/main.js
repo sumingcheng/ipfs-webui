@@ -82,7 +82,7 @@ export class App extends Component {
           <div className="h-100 top-0 right-0 fixed appOverlay" style={{ background: 'rgba(99, 202, 210, 0.2)' }}/>}
         <div className="flex flex-row-reverse-l 1flex-column-reverse justify-end justify-start-l"
              style={{ minHeight: '100vh-60px' }}>
-          <div className="flex-auto-l">
+          <div className="flex-auto-l contentStyle">
             <div className="flex items-center ph3 ph4-l" style={{
               WebkitAppRegion: 'drag',
               height: 75,
@@ -111,7 +111,7 @@ export class App extends Component {
                 <Connected className="joyride-app-status"/>
               </div>
             </div>
-            <main className="bg-white pv3 mainStyle">
+            <main className="bg-white mainStyle">
               {(ipfsReady || url === '/welcome' || url.startsWith('/settings')) ? <Page/> : <ComponentLoader/>}
             </main>
           </div>

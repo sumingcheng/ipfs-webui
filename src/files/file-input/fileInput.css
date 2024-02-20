@@ -1,0 +1,18 @@
+.textButton {
+  color: #2853e0;
+  background: white;
+  border: 1px solid #3649F9;
+  width: 88px;
+  height: 28px;
+  border-radius: 4px;
+  font-size: 12px;
+}
+.uploadBtn {
+  color: #fff;
+  background: #3649F9;
+  border: 1px solid #3649F9;
+  width: 112px;
+  height: 28px;
+  border-radius: 4px;
+  font-size: 12px;
+}

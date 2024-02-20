@@ -10,7 +10,7 @@ import NewFolderIcon from '../../icons/StrokeNewFolder.js'
 import DecentralizationIcon from '../../icons/StrokeDecentralization.js'
 // Components
 import Button from '../../components/button/Button.js'
-import '../../css/style.css'
+import './fileInput.css'
 
 class FileInput extends React.Component {
   onInputChange = (input) => async () => {
@@ -40,7 +40,7 @@ class FileInput extends React.Component {
           {'上传文件夹'}
         </Button>
 
-        <Button id="add-folder" bg="bg-navy" color="white" className="f6 flex justify-center items-center"
+        <Button id="add-folder" bg="bg-navy" color="white" className="uploadBtn f6 flex justify-center items-center"
                 minWidth="100px" onClick={() => this.filesInput.click()}>
           {/* <FolderIcon className='fill-aqua w2 mr1' /> */}
           {'上传模型包文件'}

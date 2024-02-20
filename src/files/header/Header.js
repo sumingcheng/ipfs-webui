@@ -14,6 +14,8 @@ import GlyphPinCloud from '../../icons/GlyphPinCloud.js'
 import '../PendingAnimation.css'
 import './index.css'
 
+import './header.css'
+
 const BarOption = ({
   children,
   text,
@@ -67,67 +69,69 @@ class Header extends React.Component {
 
     return (
       <div>
-        <div className="db flex-l justify-between items-center mb3">
-          <div className="overflow-hidden">
-            <div className={'font16'}>模型文件存储</div>
-            {/* <Breadcrumbs className="joyride-files-breadcrumbs" path={files ? files.path : '/404'} */}
-            {/*              onClick={onNavigate} */}
-            {/*              onContextMenuHandle={(...args) => this.handleBreadCrumbsContextMenu(...args)} */}
-            {/*              onAddFiles={this.props.onAddFiles} onMove={this.props.onMove}/> */}
-          </div>
-          <div className="flex justify-between items-center joyride-files-add">
-            {pinsInQueue > 0 && <a href="#/pins" alt={t('pinningQueue')} title={t('pinningQueue')} className="ml3">
-              <GlyphPinCloud
-                style={{ width: '3rem' }}
-                className="fill-teal PendingAnimation"/>
-            </a>}
+        <div className={''}>
+          <div className="db flex-l justify-between items-center headerTop">
+            <div className="">
+              <div className={'font16'}>模型文件存储</div>
+              {/* <Breadcrumbs className="joyride-files-breadcrumbs" path={files ? files.path : '/404'} */}
+              {/*              onClick={onNavigate} */}
+              {/*              onContextMenuHandle={(...args) => this.handleBreadCrumbsContextMenu(...args)} */}
+              {/*              onAddFiles={this.props.onAddFiles} onMove={this.props.onMove}/> */}
+            </div>
+            <div className="flex justify-between items-center joyride-files-add">
+              {pinsInQueue > 0 && <a href="#/pins" alt={t('pinningQueue')} title={t('pinningQueue')} className="ml3">
+                <GlyphPinCloud
+                  style={{ width: '3rem' }}
+                  className="fill-teal PendingAnimation"/>
+              </a>}
 
-            {/* /!* 文件 *!/ */}
-            {/* <BarOption title={t('filesDescription')} text={t('app:terms:files')}> */}
-            {/*   {hasUpperDirectory */}
-            {/*     ? ( */}
-            {/*       <span> */}
-            {/*         {size(currentDirectorySize)}<span className="f5 gray">/{size(filesSize)}</span> */}
-            {/*       </span> */}
-            {/*       ) */}
-            {/*     : size(filesSize)} */}
-            {/* </BarOption> */}
-            {/* /!* 所有块 *!/ */}
-            {/* <BarOption title={t('allBlocksDescription')} text={t('allBlocks')}> */}
-            {/*   {size(repoSize)} */}
-            {/* </BarOption> */}
+              {/* /!* 文件 *!/ */}
+              {/* <BarOption title={t('filesDescription')} text={t('app:terms:files')}> */}
+              {/*   {hasUpperDirectory */}
+              {/*     ? ( */}
+              {/*       <span> */}
+              {/*         {size(currentDirectorySize)}<span className="f5 gray">/{size(filesSize)}</span> */}
+              {/*       </span> */}
+              {/*       ) */}
+              {/*     : size(filesSize)} */}
+              {/* </BarOption> */}
+              {/* /!* 所有块 *!/ */}
+              {/* <BarOption title={t('allBlocksDescription')} text={t('allBlocks')}> */}
+              {/*   {size(repoSize)} */}
+              {/* </BarOption> */}
 
-            <div className="btnItems">
-              <div className="ml-auto flex items-center">
-                {(files && files.type === 'directory' && filesPathInfo.isMfs)
-                  ? <FileInput
-                    className={'buttonColm'}
-                    onNewFolder={this.props.onNewFolder}
-                    onAddFiles={this.props.onAddFiles}
-                    onAddByPath={this.props.onAddByPath}
-                    onCliTutorMode={this.props.onCliTutorMode}
-                  />
-                  : <div ref={el => {
-                    this.dotsWrapper = el
-                  }}>
-                    <Button bg="bg-navy"
-                            color="white"
-                            fill="fill-aqua"
-                            className="f6 relative flex justify-center items-center tc"
-                            minWidth="100px"
-                            disabled={!files || filesPathInfo.isRoot || files.type === 'unknown'}
-                            onClick={this.handleContextMenu}>
-                      <GlyphDots className="w1 mr2"/>
-                      {t('app:actions.more')}
-                    </Button>
-                  </div>
-                }
+              <div className="btnItems">
+                <div className="ml-auto flex items-center">
+                  {(files && files.type === 'directory' && filesPathInfo.isMfs)
+                    ? <FileInput
+                      className={'buttonColm'}
+                      onNewFolder={this.props.onNewFolder}
+                      onAddFiles={this.props.onAddFiles}
+                      onAddByPath={this.props.onAddByPath}
+                      onCliTutorMode={this.props.onCliTutorMode}
+                    />
+                    : <div ref={el => {
+                      this.dotsWrapper = el
+                    }}>
+                      <Button bg="bg-navy"
+                              color="white"
+                              fill="fill-aqua"
+                              className="f6 relative flex justify-center items-center tc"
+                              minWidth="100px"
+                              disabled={!files || filesPathInfo.isRoot || files.type === 'unknown'}
+                              onClick={this.handleContextMenu}>
+                        <GlyphDots className="w1 mr2"/>
+                        {t('app:actions.more')}
+                      </Button>
+                    </div>
+                  }
+                </div>
               </div>
             </div>
           </div>
         </div>
-        <div>
-          <FileNavigation/>
+        <div className={'tabList'}>
+          <div className={'tabNav'}><FileNavigation/></div>
         </div>
       </div>
     )

@@ -1,0 +1,11 @@
+.headerTop {
+  height: 53px;
+}
+.tabList {
+  width: 100%;
+  background-color: #fff;
+  border-radius: 8px 8px 0px 0px !important;
+}
+.tabList .tabNav {
+  margin: 0px 10px 16px 10px;
+}
