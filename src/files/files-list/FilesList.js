@@ -385,7 +385,7 @@ export const FilesList = ({
               onChildScroll,
               scrollTop
             }) => (
-              <div className="flex-auto fileListBorder">
+              <div className="flex-auto">
                 <AutoSizer disableHeight>
                   {({ width }) => (
                     <List
@@ -393,7 +393,7 @@ export const FilesList = ({
                       autoHeight
                       width={width}
                       height={height}
-                      className="outline-0"
+                      className="outline-0 fileListBorder"
                       aria-label={t('filesListLabel')}
                       rowCount={rowCount}
                       rowHeight={52}
