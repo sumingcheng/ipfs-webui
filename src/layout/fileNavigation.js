@@ -64,7 +64,7 @@ const App = () => {
 
   return (
     <div className="fileNavMain">
-      <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" items={menuItems}/>
+      <Menu className={'antdMenu'} onClick={onClick} selectedKeys={[current]} mode="horizontal" items={menuItems}/>
       <div className="content">
         {renderContent(current)}
       </div>

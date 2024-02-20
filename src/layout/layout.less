@@ -1,11 +1,13 @@
 .menuMain {
   font-weight: bold;
   height: 50px;
-  border-bottom: 1px solid #D3DEFF;
+  border-bottom: 1px solid #D3DEFF;;
 }
+
 .menuMain ul li {
   font-size: 14px;
 }
+
 .menuRow {
   position: sticky;
   height: 50px;
@@ -13,65 +15,74 @@
   left: 0;
   z-index: 9;
   background-color: white;
-  border-bottom: 1px solid #D3DEFF;
+  border-bottom: 1px solid #D3DEFF;;
   box-shadow: 0px 8px 15px 0px rgba(54, 73, 249, 0.06);
 }
+
 .titleBar {
   display: flex;
   justify-content: space-between;
   flex-wrap: nowrap;
 }
+
 .fileNavMain {
   /*border: 1px solid rgb(238, 238, 238);*/
   border-bottom: none;
   height: 99px;
+
+  .antdMenu {
+    //padding-inline: 15px
+  }
 }
+
 .content {
   width: 100%;
+  //border-bottom: 1px solid rgb(238, 238, 238);
 }
+
 .ModelFile {
   display: flex;
   justify-content: left;
   align-items: center;
   flex-wrap: nowrap;
   margin-top: 14px;
+
+  button {
+    margin-left: 10px;
+    height: 22px;
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
-.ModelFile button {
-  margin-left: 10px;
-  height: 22px;
-  font-size: 12px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+
+
 .contentStyle {
   margin: 16px;
 }
+
 .mainStyle {
   /*height: calc(100vh - 70px);*/
   /*border-radius: 8px;*/
-  overflow-y: auto;
-  /* 显示垂直滚动条 */
-  scrollbar-width: thin;
-  /* Firefox */
-  scrollbar-color: #E9E9E9 transparent;
-  /* Firefox */
+  overflow-y: auto; /* 显示垂直滚动条 */
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: #E9E9E9 transparent; /* Firefox */
   background-color: #f2f3f5;
 }
+
 /* 定制滚动条的样式（对于 Chrome, Edge, Safari） */
 .mainStyle::-webkit-scrollbar {
-  width: 8px;
-  /* 滚动条的宽度 */
+  width: 8px; /* 滚动条的宽度 */
 }
+
 .mainStyle::-webkit-scrollbar-track {
-  background: transparent;
-  /* 滚动条轨道的颜色 */
+  background: transparent; /* 滚动条轨道的颜色 */
 }
+
 .mainStyle::-webkit-scrollbar-thumb {
-  background-color: #E9E9E9;
-  /* 滚动条滑块的颜色 */
-  border-radius: 10px;
-  /* 滚动条滑块的圆角 */
-  border: 2px solid transparent;
-  /* 滚动条滑块边框颜色 */
+  background-color: #E9E9E9; /* 滚动条滑块的颜色 */
+  border-radius: 10px; /* 滚动条滑块的圆角 */
+  border: 2px solid transparent; /* 滚动条滑块边框颜色 */
 }
+
