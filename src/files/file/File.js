@@ -136,7 +136,7 @@ const File = ({
   }
 
   if (focused || (selected && !translucent) || coloured || (isOver && canDrop)) {
-    styles.backgroundColor = '#F0F6FA'
+    styles.backgroundColor = '#f5f6fe'
   } else if (translucent) {
     className += ' o-70'
   }
@@ -239,7 +239,7 @@ const File = ({
               <div className="f6 truncate charcoal">{name}</div>
             </Tooltip>
             <Tooltip text={hash}>
-              <div className="f7 mt1 gray truncate monospace">{hash}</div>
+              <div className="f7 mt-1 gray truncate monospace">{hash}</div>
             </Tooltip>
           </div>
         </button>

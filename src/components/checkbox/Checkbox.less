@@ -1,0 +1,31 @@
+.checkSpan {
+  width: 14px;
+  height: 14px;
+}
+
+.Checkbox {
+  > span:first-of-type {
+    background-color: #fff;
+    border: 1px solid #D3DEFF;
+  }
+
+  > input {
+    left: -99999px;
+  }
+
+  input:checked + span svg {
+    opacity: 1;
+    border: 1px solid #3649F9;
+    background-color: #3649F9;
+    fill: #fff;
+  }
+
+  > input:disabled + span {
+    cursor: not-allowed;
+    //opacity: 0.5;
+  }
+
+  input:focus + span {
+    outline: 1px solid #bbb;
+  }
+}

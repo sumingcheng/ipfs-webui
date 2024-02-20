@@ -16,6 +16,7 @@ import Checkbox from '../../components/checkbox/Checkbox.js'
 import SelectedActions from '../selected-actions/SelectedActions.js'
 import File from '../file/File.js'
 import LoadingAnimation from '../../components/loading-animation/LoadingAnimation.js'
+import './fileList.css'
 
 const addFiles = async (filesPromise, onAddFiles) => {
   const files = await filesPromise
@@ -338,17 +339,19 @@ export const FilesList = ({
 
   return (
     <section ref={drop}
-             className={classnames('FilesList no-select sans-serif border-box w-100 flex flex-column', className)}>
+             className={classnames('tableMain FilesList no-select sans-serif border-box w-100 flex flex-column', className)}>
       {showLoadingAnimation
         ? <LoadingAnimation/>
         : <Fragment>
-          <header className="gray pv3 flex items-center flex-none" style={{
+          <header className="tableHeader gray pv3 flex items-center flex-none" style={{
             paddingRight: '1px',
             paddingLeft: '1px'
           }}>
+            {/* 选项 */}
             <div className={checkBoxCls}>
               <Checkbox checked={allSelected} onChange={toggleAll} aria-label={t('selectAllEntries')}/>
             </div>
+            {/* 模型名称 */}
             <div className="ph2 f6 flex-auto">
               <button aria-label={t('sortBy', { name: t('app:terms.name') })} onClick={changeSort(sorts.BY_NAME)}>
                 {t('app:terms.name')} {sortByIcon(sorts.BY_NAME)}
@@ -393,7 +396,7 @@ export const FilesList = ({
                       className="outline-0"
                       aria-label={t('filesListLabel')}
                       rowCount={rowCount}
-                      rowHeight={55}
+                      rowHeight={52}
                       rowRenderer={rowRenderer}
                       noRowsRenderer={emptyRowsRenderer}
                       onRowsRendered={onRowsRendered}
