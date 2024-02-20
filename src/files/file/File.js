@@ -19,6 +19,8 @@ import usePostAppAdd from '../../hooks/addModel.js'
 import '../../css/style.css'
 import useGetModelTypes from '../../hooks/getModelTypes.js'
 
+import './file.css'
+
 const { Option } = Select
 const File = ({
   name,
@@ -160,7 +162,12 @@ const File = ({
   /* 调色盘 */
   // const [color, setColor] = React.useState('')
   // const [showPicker, setShowPicker] = React.useState(false)
-  const { getModelTypes, data, error, isLoading } = useGetModelTypes()
+  const {
+    getModelTypes,
+    data,
+    error,
+    isLoading
+  } = useGetModelTypes()
 
   const handleColorChange = (value) => {
     // setColor(color.hex)
@@ -221,9 +228,9 @@ const File = ({
           <Checkbox disabled={cantSelect} checked={selected} onChange={select}
                     aria-label={t('checkboxLabel', { name })}/>
         </div>
-
+        {/* 模型名称 */}
         <button ref={preview} onClick={onNavigate}
-                className="relative pointer flex items-center flex-grow-1 ph2 pv1 w-40"
+                className="relative pointer flex items-center flex-grow-1 ph2 pv1 w-30"
                 aria-label={name === '..'
                   ? t('previousFolder')
                   : t('fileLabel', {
@@ -244,8 +251,8 @@ const File = ({
           </div>
         </button>
         {/* 固定状态 */}
-        <div className="ph2 pv1 flex-none hide-child dn db-l tr mw3 w-20 transition-all">
-          <button className="ph2 db button-inside-focus" style={{
+        <div className="ph2 pv1 flex-none dn db-l tr mw3 w-20 transition-all">
+          <button className="ph2 db button-inside-focus PinState" style={{
             width: '2.5rem',
             height: '2rem'
           }} onClick={isFailedPin
@@ -262,8 +269,10 @@ const File = ({
           {size}
         </div>
         {/* 操作 */}
-        <div className="size pl2 pr4 pv1 flex-none f6 dn db-l tc w-10 mw4">
+        <div className="size pl2 pr4 pv1 rowTable f6 dn db-l tc w-20 mw4">
+          <Button type="text" onClick={() => showModal(cid, name, size)} className={'tableTextColor'}>下载</Button>
           <Button type="text" onClick={() => showModal(cid, name, size)} className={'tableTextColor'}>广播</Button>
+          <Button type="text" onClick={() => showModal(cid, name, size)} className={'tableTextColor'}>更多</Button>
         </div>
         {/* ... */}
         <button ref={dotsWrapper} className="ph2 db button-inside-focus file-context-menu" style={{ width: '2.5rem' }}

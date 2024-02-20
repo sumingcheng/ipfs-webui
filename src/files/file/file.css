@@ -1,3 +1,11 @@
 .tableTextColor {
   color: #0E1C4C;
 }
+/*.PinState div svg {*/
+/*  fill: #d9dbe2;*/
+/*}*/
+.rowTable {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

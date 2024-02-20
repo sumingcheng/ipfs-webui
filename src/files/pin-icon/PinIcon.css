@@ -1,0 +1,10 @@
+.notSelected {
+  fill: #d9dbe2;
+  &:hover{
+    fill: #95a0fc;
+  }
+}
+
+.Selected {
+  fill: #3649f9;
+}
