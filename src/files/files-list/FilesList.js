@@ -385,7 +385,7 @@ export const FilesList = ({
               onChildScroll,
               scrollTop
             }) => (
-              <div className="flex-auto">
+              <div className="flex-auto fileListBorder">
                 <AutoSizer disableHeight>
                   {({ width }) => (
                     <List

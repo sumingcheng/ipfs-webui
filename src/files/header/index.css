@@ -4,7 +4,7 @@
   color: #0C296E;
 }
 
-.buttonColm button{
+.buttonColm button:not(:last-of-type) {
   float: left;
   margin-right: 8px;
 }

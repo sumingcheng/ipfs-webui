@@ -258,12 +258,12 @@ const File = ({
           </button>
         </div>
         {/* 大小 */}
-        <div className="size pl2 pr4 pv1 flex-none f6 dn db-l tr charcoal-muted w-10 mw4">
+        <div className="tableTextColor size pl2 pr4 pv1 flex-none f6 dn db-l tr w-10 mw4">
           {size}
         </div>
         {/* 操作 */}
-        <div className="size pl2 pr4 pv1 flex-none f6 dn db-l tc charcoal-muted w-10 mw4">
-          <Button type="text" onClick={() => showModal(cid, name, size)}>广播</Button>
+        <div className="size pl2 pr4 pv1 flex-none f6 dn db-l tc w-10 mw4">
+          <Button type="text" onClick={() => showModal(cid, name, size)} className={'tableTextColor'}>广播</Button>
         </div>
         {/* ... */}
         <button ref={dotsWrapper} className="ph2 db button-inside-focus file-context-menu" style={{ width: '2.5rem' }}
@@ -271,6 +271,7 @@ const File = ({
           <GlyphDots className="fill-gray-muted pointer hover-fill-gray transition-all"/>
         </button>
       </div>
+      {/* 弹框 */}
       <Modal style={{ top: 20 }} title="广播到应用商店" open={isModalVisible} onOk={handleOk} onCancel={handleCancel}
              okText="提交" cancelText="取消" confirmLoading={confirmLoading}>
         <Form form={form} layout="vertical">
