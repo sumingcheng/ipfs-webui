@@ -8,3 +8,25 @@
 .myButton{
   margin-right: 8px;
 }
+
+.normalButton {
+  width: 65px;
+  height: 26px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: normal;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 0px;
+  box-sizing: border-box;
+  color: #3649F9;
+  background: #fff;
+  border: 1px solid #3649F9;
+}
+.normalButton:hover {
+  background-color: #e0e2f0;
+}
+.normalButton:active {
+  background-color: #d3d6f0;
+}

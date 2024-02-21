@@ -28,7 +28,7 @@ const App = () => {
         placement="bottomLeft"
         arrow
       >
-        <Button className={'settingButton'}>•••</Button>
+        <Button className={'settingButton normalButton'}>•••</Button>
       </Dropdown>
     </div>
   )
