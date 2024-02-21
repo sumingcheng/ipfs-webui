@@ -16,7 +16,7 @@ import Checkbox from '../../components/checkbox/Checkbox.js'
 import SelectedActions from '../selected-actions/SelectedActions.js'
 import File from '../file/File.js'
 import LoadingAnimation from '../../components/loading-animation/LoadingAnimation.js'
-import { Pagination } from 'antd'
+import { Pagination, message } from 'antd'
 import './fileList.css'
 
 const addFiles = async (filesPromise, onAddFiles) => {
@@ -295,12 +295,20 @@ export const FilesList = ({
     const listItem = currentFiles[index]
 
     const onNavigateHandler = () => {
-      if (listItem.type === 'unknown') return onInspect(listItem.cid)
-      return onNavigate({
-        path: listItem.path,
-        cid: listItem.cid
-      })
+      if (!listItem.cid) {
+        message.error('没有找到CID')
+        return
+      }
+
+      navigator.clipboard.writeText(listItem.cid.toString())
+        .then(() => {
+          message.success('CID已经复制到剪贴板')
+        })
+        .catch(() => {
+          message.error('复制CID失败')
+        })
     }
+
     const onDismissFailedPinHandler = () => {
       doDismissFailedPin(...listItem.failedPins)
     }
@@ -381,9 +389,9 @@ export const FilesList = ({
               <Checkbox checked={allSelected} onChange={toggleAll} aria-label={t('selectAllEntries')}/>
             </div>
             {/* 模型名称 */}
-            <div className="ph2 f6 flex-auto">
+            <div className="ph2 f6 flex-auto moduleName">
               <button aria-label={t('sortBy', { name: t('app:terms.name') })} onClick={changeSort(sorts.BY_NAME)}>
-                {t('app:terms.name')} {sortByIcon(sorts.BY_NAME)}
+                {t('app:terms.name')}{sortByIcon(sorts.BY_NAME)}
               </button>
             </div>
             {/* 固定状态 */}
@@ -454,18 +462,18 @@ export const FilesList = ({
             isMfs={filesPathInfo.isMfs}
             size={selectedFiles.reduce((a, b) => a + (b.size || 0), 0)}/>
           }
-          <div className={'filePagination'}>
-            <Pagination
-              current={currentPage}
-              pageSize={pageSize}
-              onChange={handlePageChange}
-              onShowSizeChange={handlePageSizeChange}
-              total={allFiles.length}
-              showSizeChanger
-              pageSizeOptions={['6', '12', '18', '24']}
-            />
-          </div>
         </Fragment>}
+      <div className={'filePagination'}>
+        <Pagination
+          current={currentPage}
+          pageSize={pageSize}
+          onChange={handlePageChange}
+          onShowSizeChange={handlePageSizeChange}
+          total={allFiles.length}
+          showSizeChanger
+          pageSizeOptions={['6', '12', '18', '24']}
+        />
+      </div>
     </section>
   )
 }

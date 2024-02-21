@@ -234,7 +234,7 @@ const File = ({
         </div>
         {/* 模型名称 */}
         <button ref={preview} onClick={onNavigate}
-                className="relative pointer flex items-center flex-grow-1 ph2 pv1 w-30"
+                className="relative pointer flex items-center flex-grow-1 ph2 pv1 w-20"
                 aria-label={name === '..'
                   ? t('previousFolder')
                   : t('fileLabel', {
@@ -273,10 +273,10 @@ const File = ({
           {size}
         </div>
         {/* 操作 */}
-        <div className="size pl2 pr4 pv1 rowTable f6 dn db-l tc w-20 mw4">
-          <Button type="text" onClick={handleDownload} className={'tableTextColor'}>下载</Button>
-          <Button type="text" onClick={() => showModal(cid, name, size)} className={'tableTextColor'}>广播</Button>
-          <Button type="text" onClick={() => showModal(cid, name, size)} className={'tableTextColor'}>更多</Button>
+        <div className="size  rowTable f6 dn db-l tc w-20 mw4 optionTextColor">
+          <Button type="text" onClick={handleDownload} className={''}>下载</Button>
+          <Button type="text" onClick={() => showModal(cid, name, size)} className={''}>广播</Button>
+          <Button type="text" onClick={() => showModal(cid, name, size)} className={''}>更多</Button>
         </div>
         {/* ... */}
         <button ref={dotsWrapper} className="ph2 db button-inside-focus file-context-menu" style={{ width: '2.5rem' }}

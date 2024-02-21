@@ -5,6 +5,13 @@
   border-bottom: 1px solid #EBEFFD;
   height: calc(100vh - 235px);
 }
+.tableMain .flex-auto {
+  overflow-y: scroll;
+  overflow-x: scroll;
+}
+.moduleName {
+  margin-top: 17px;
+}
 .tableHeader {
   background: #F5F7FF;
   height: 40px;
@@ -25,7 +32,7 @@
   display: flex;
   justify-content: center;
   align-content: center;
-  margin-bottom: 14px;
+  margin: 14px 0;
   /* 调整分页器的容器样式 */
   /* 调整分页器普通页码按钮样式 */
   /* 当前页码的样式 */
