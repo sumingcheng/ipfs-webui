@@ -6,7 +6,7 @@ import '../PendingAnimation.css'
 import './PinIcon.css'
 
 const PinningIcon = ({ t, isFailedPin, isPendingPin, isRemotePin, pinned }) => {
-  console.log(isFailedPin, isPendingPin, isRemotePin, pinned)
+  // console.log(isFailedPin, isPendingPin, isRemotePin, pinned)
   if (isFailedPin) {
     return (
       <div className='br-100 o-70' title={t('pinningFailedClickToDismiss')} style={{ width: '2rem', height: '2rem' }}>

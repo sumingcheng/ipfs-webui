@@ -193,7 +193,7 @@ const File = ({
 
   const [form] = Form.useForm()
   const { postAppAdd } = usePostAppAdd()
-
+  /* 展示弹窗 */
   const showModal = async (appIpfsHash, appName, size) => {
     form.setFieldsValue({
       appIpfsHash: appIpfsHash.toString(),
@@ -201,6 +201,10 @@ const File = ({
       fileSize: sizeToBytes(size)
     })
     setIsModalVisible(true)
+  }
+  /* 下载 */
+  const handleDownload = () => {
+    console.log('下载', cid)
   }
 
   const handleOk = async () => {
@@ -270,7 +274,7 @@ const File = ({
         </div>
         {/* 操作 */}
         <div className="size pl2 pr4 pv1 rowTable f6 dn db-l tc w-20 mw4">
-          <Button type="text" onClick={() => showModal(cid, name, size)} className={'tableTextColor'}>下载</Button>
+          <Button type="text" onClick={handleDownload} className={'tableTextColor'}>下载</Button>
           <Button type="text" onClick={() => showModal(cid, name, size)} className={'tableTextColor'}>广播</Button>
           <Button type="text" onClick={() => showModal(cid, name, size)} className={'tableTextColor'}>更多</Button>
         </div>

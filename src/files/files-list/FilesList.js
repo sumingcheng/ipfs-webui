@@ -16,6 +16,7 @@ import Checkbox from '../../components/checkbox/Checkbox.js'
 import SelectedActions from '../selected-actions/SelectedActions.js'
 import File from '../file/File.js'
 import LoadingAnimation from '../../components/loading-animation/LoadingAnimation.js'
+import { Pagination } from 'antd'
 import './fileList.css'
 
 const addFiles = async (filesPromise, onAddFiles) => {
@@ -291,7 +292,8 @@ export const FilesList = ({
     style
   }) => {
     const pinsString = pins.map(p => p.toString())
-    const listItem = allFiles[index]
+    const listItem = currentFiles[index]
+
     const onNavigateHandler = () => {
       if (listItem.type === 'unknown') return onInspect(listItem.cid)
       return onNavigate({
@@ -336,6 +338,33 @@ export const FilesList = ({
     'o-1': allSelected,
     'o-70': !allSelected
   }, ['pl2 w2 glow'])
+
+  const onShowSizeChange = (current, pageSize) => {
+    console.log(current, pageSize)
+  }
+
+  /* 分页 */
+  const [currentPage, setCurrentPage] = useState(1)
+  const [pageSize, setPageSize] = useState(6)
+
+  // 分页改变时的回调
+  const handlePageChange = (page, pageSize) => {
+    setCurrentPage(page)
+    setPageSize(pageSize)
+  }
+
+  // 每页显示数量改变时的回调
+  const handlePageSizeChange = (current, size) => {
+    setPageSize(size)
+    setCurrentPage(1) // 每次改变每页数量时，返回第一页
+  }
+
+  // 根据当前页码和每页大小计算当前页的文件
+  const currentFiles = useMemo(() => {
+    const start = (currentPage - 1) * pageSize
+    const end = start + pageSize
+    return files.slice(start, end)
+  }, [currentPage, pageSize, files])
 
   return (
     <section ref={drop}
@@ -395,7 +424,7 @@ export const FilesList = ({
                       height={height}
                       className="outline-0 fileListBorder"
                       aria-label={t('filesListLabel')}
-                      rowCount={rowCount}
+                      rowCount={currentFiles.length} // 更新为当前页的文件数量
                       rowHeight={52}
                       rowRenderer={rowRenderer}
                       noRowsRenderer={emptyRowsRenderer}
@@ -425,6 +454,17 @@ export const FilesList = ({
             isMfs={filesPathInfo.isMfs}
             size={selectedFiles.reduce((a, b) => a + (b.size || 0), 0)}/>
           }
+          <div className={'filePagination'}>
+            <Pagination
+              current={currentPage}
+              pageSize={pageSize}
+              onChange={handlePageChange}
+              onShowSizeChange={handlePageSizeChange}
+              total={allFiles.length}
+              showSizeChanger
+              pageSizeOptions={['6', '12', '18', '24']}
+            />
+          </div>
         </Fragment>}
     </section>
   )

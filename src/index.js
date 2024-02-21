@@ -11,6 +11,7 @@ import i18n from './i18n.js'
 import { DndProvider } from 'react-dnd'
 import DndBackend from './lib/dnd-backend.js'
 import { ConfigProvider } from 'antd'
+import zhCN from 'antd/lib/locale/zh_CN'
 
 const appVersion = process.env.REACT_APP_VERSION
 const gitRevision = process.env.REACT_APP_GIT_REV
@@ -28,6 +29,7 @@ async function render () {
       <I18nextProvider i18n={i18n}>
         <DndProvider backend={DndBackend}>
           <ConfigProvider
+            locale={zhCN}
             theme={{
               token: {
                 colorPrimary: '#3c63e3',
