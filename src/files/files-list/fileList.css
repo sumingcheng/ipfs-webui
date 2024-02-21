@@ -5,13 +5,22 @@
   border-bottom: 1px solid #EBEFFD;
   height: calc(100vh - 235px);
 }
+
 .tableMain .flex-auto {
-  overflow-y: scroll;
-  overflow-x: scroll;
+  overflow-x: auto; /* 横向滚动条在内容溢出时显示 */
+  overflow-y: scroll; /* 启用竖向滚动 */
+  scrollbar-width: none; /* Firefox 浏览器隐藏滚动条 */
 }
+
+.tableMain .flex-auto::-webkit-scrollbar {
+  display: none; /* Chrome, Safari 和 Opera 浏览器隐藏滚动条 */
+}
+
+
 .moduleName {
-  margin-top: 17px;
+  /*margin-top: 17px;*/
 }
+
 .tableHeader {
   background: #F5F7FF;
   height: 40px;
@@ -21,12 +30,15 @@
   letter-spacing: 0px;
   color: #0C296E;
 }
+
 .fileListBorder {
   border-bottom: 1px solid #eeeeee;
 }
+
 .fileListBorder div div div div {
   opacity: 1;
 }
+
 .filePagination {
   width: 100%;
   display: flex;
@@ -44,12 +56,14 @@
   /* 更改每页显示条数选择器样式 */
   /* 隐藏分页器底部边框线 */
 }
+
 .filePagination .ant-pagination {
   font-size: 14px;
   /* 设置字体大小 */
   color: #333;
   /* 设置字体颜色 */
 }
+
 .filePagination .ant-pagination-item {
   border: none;
   /* 移除边框 */
@@ -57,6 +71,7 @@
   /* 移除背景 */
   border-radius: 50%;
 }
+
 .filePagination .ant-pagination-item-active {
   border: none;
   /* 移除边框 */
@@ -65,10 +80,12 @@
   color: #fff !important;
   /* 设置字体颜色，确保覆盖默认样式 */
 }
+
 .filePagination .ant-pagination-item-active a {
   color: #fff !important;
   /* 设置字体颜色，确保覆盖默认样式 */
 }
+
 .filePagination .ant-pagination-item:hover,
 .filePagination .ant-pagination-item a:hover {
   color: #8092A9;
@@ -76,6 +93,7 @@
   border-color: #1890ff;
   /* 设置悬浮时的边框颜色 */
 }
+
 .filePagination .ant-pagination-prev,
 .filePagination .ant-pagination-next,
 .filePagination .ant-pagination-jump-prev,
@@ -85,6 +103,7 @@
   background: none;
   /* 移除背景 */
 }
+
 .filePagination .ant-pagination-prev .ant-pagination-item-link,
 .filePagination .ant-pagination-next .ant-pagination-item-link,
 .filePagination .ant-pagination-jump-prev .ant-pagination-item-link,
@@ -93,12 +112,14 @@
   border: 0.77px solid #EBEBF1;
   font-weight: bold;
 }
+
 .filePagination .ant-pagination-options-quick-jumper input {
   border: 1px solid #d9d9d9;
   /* 设置边框 */
   border-radius: 2px;
   /* 设置边框圆角 */
 }
+
 .filePagination .ant-pagination-options-quick-jumper button {
   background-color: #1890ff;
   /* 设置背景颜色 */
@@ -107,10 +128,12 @@
   color: #fff;
   /* 设置字体颜色 */
 }
+
 .filePagination .ant-pagination-options-size-changer .ant-select-selector {
   border: 1px solid #d9d9d9 !important;
   /* 设置边框，确保覆盖默认样式 */
 }
+
 .filePagination .ant-pagination::before {
   display: none;
 }
