@@ -30,13 +30,13 @@ const App = () => {
       key: 'model-file'
       // icon: <FileTextOutlined/>
     },
+    // {
+    //   label: '模型镜像文件',
+    //   key: 'model-image-file'
+    //   // icon: <HddOutlined/>
+    // },
     {
-      label: '模型镜像文件',
-      key: 'model-image-file'
-      // icon: <HddOutlined/>
-    },
-    {
-      label: '数据集文件',
+      label: '模型文件',
       key: 'dataset-file'
       // icon: <DatabaseOutlined/>
     },
