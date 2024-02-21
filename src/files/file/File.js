@@ -14,7 +14,7 @@ import FileIcon from '../file-icon/FileIcon.js'
 import { CID } from 'multiformats/cid'
 import { NativeTypes } from 'react-dnd-html5-backend'
 import PinIcon from '../pin-icon/PinIcon.js'
-import { Modal, Form, Input, Button, Select, message } from 'antd'
+import { Modal, Form, Input, Button, Select, message, Dropdown } from 'antd'
 import usePostAppAdd from '../../hooks/addModel.js'
 import '../../css/style.css'
 import useGetModelTypes from '../../hooks/getModelTypes.js'
@@ -22,6 +22,7 @@ import useGetModelTypes from '../../hooks/getModelTypes.js'
 import './file.css'
 
 const { Option } = Select
+
 const File = ({
   name,
   type,
@@ -159,6 +160,7 @@ const File = ({
     'o-70 glow': !cantSelect,
     'o-1': selected || focused
   }, ['pl2 w2'])
+
   /* 调色盘 */
   // const [color, setColor] = React.useState('')
   // const [showPicker, setShowPicker] = React.useState(false)
@@ -181,6 +183,18 @@ const File = ({
     }
     form.setFieldsValue({ modelType: value })
   }
+
+  /* 下拉项 */
+  const items = [
+    {
+      key: '1',
+      label: (
+        <div className={'linkButton'}>
+          删除
+        </div>
+      )
+    }
+  ]
 
   /* 弹窗逻辑 */
   const [isModalVisible, setIsModalVisible] = React.useState(false)
@@ -234,7 +248,7 @@ const File = ({
         </div>
         {/* 模型名称 */}
         <button ref={preview} onClick={onNavigate}
-                className="relative pointer flex items-center flex-grow-1 ph2 pv1 w-20"
+                className="relative pointer flex items-center flex-grow-1 ph2 pv1 w-30"
                 aria-label={name === '..'
                   ? t('previousFolder')
                   : t('fileLabel', {
@@ -246,12 +260,14 @@ const File = ({
             <FileIcon name={name} type={type}/>
           </div>
           <div style={{ width: 'calc(100% - 3.25rem)' }}>
-            <Tooltip text={name}>
-              <div className="f6 truncate charcoal">{name}</div>
-            </Tooltip>
-            <Tooltip text={hash}>
-              <div className="f7 mt-1 gray truncate monospace">{hash}</div>
-            </Tooltip>
+            <div className="f6 truncate charcoal">{name}</div>
+            <div className="f7 mt-1 gray truncate monospace">{hash}</div>
+            {/* <Tooltip text={name}> */}
+            {/*   <div className="f6 truncate charcoal">{name}</div> */}
+            {/* </Tooltip> */}
+            {/* <Tooltip text={hash}> */}
+            {/*   <div className="f7 mt-1 gray truncate monospace">{hash}</div> */}
+            {/* </Tooltip> */}
           </div>
         </button>
         {/* 固定状态 */}
@@ -274,9 +290,17 @@ const File = ({
         </div>
         {/* 操作 */}
         <div className="size  rowTable f6 dn db-l tc w-20 mw4 optionTextColor">
-          <Button type="text" onClick={handleDownload} className={''}>下载</Button>
+          {/* <Button type="text" onClick={handleDownload} className={''}>下载</Button> */}
           <Button type="text" onClick={() => showModal(cid, name, size)} className={''}>广播</Button>
-          <Button type="text" onClick={() => showModal(cid, name, size)} className={''}>更多</Button>
+          {/* <Dropdown */}
+          {/*   menu={{ */}
+          {/*     items */}
+          {/*   }} */}
+          {/*   placement="bottomLeft" */}
+          {/*   arrow */}
+          {/* > */}
+          {/*   <Button className={'moreButton'}>更多</Button> */}
+          {/* </Dropdown> */}
         </div>
         {/* ... */}
         <button ref={dotsWrapper} className="ph2 db button-inside-focus file-context-menu" style={{ width: '2.5rem' }}

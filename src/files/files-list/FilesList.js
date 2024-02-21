@@ -332,8 +332,6 @@ export const FilesList = ({
           selected={selected.indexOf(listItem.name) !== -1}
           handleContextMenuClick={handleContextMenuClick}
           translucent={isDragging || (isOver && canDrop)}/>
-        <div>
-        </div>
       </div>
     )
   }
@@ -389,7 +387,7 @@ export const FilesList = ({
               <Checkbox checked={allSelected} onChange={toggleAll} aria-label={t('selectAllEntries')}/>
             </div>
             {/* 模型名称 */}
-            <div className="ph2 f6 flex-auto moduleName">
+            <div className="ph2 f6 flex-auto moduleName w-30">
               <button aria-label={t('sortBy', { name: t('app:terms.name') })} onClick={changeSort(sorts.BY_NAME)}>
                 {t('app:terms.name')}{sortByIcon(sorts.BY_NAME)}
               </button>

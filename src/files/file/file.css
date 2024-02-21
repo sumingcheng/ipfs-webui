@@ -9,6 +9,10 @@
   padding: 0px;
   color: #3649F9;
 }
+.optionTextColor button:hover {
+  color: #658af0 !important;
+  background-color: #d2d5ef;
+}
 .optionTextColor button + button {
   margin-left: 20px;
 }
@@ -16,4 +20,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.moreButton {
+  border: none;
+}
+.moreButton span {
+  font-size: 12px;
+  font-weight: normal;
+  line-height: 12px;
+  letter-spacing: -1px;
+  padding: 0px;
+  color: #3649F9;
+}
+.moreButton:hover {
+  color: #658af0;
 }
