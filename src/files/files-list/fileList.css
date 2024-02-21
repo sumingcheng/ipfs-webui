@@ -20,3 +20,90 @@
 .fileListBorder div div div div {
   opacity: 1;
 }
+.filePagination {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin-bottom: 14px;
+  /* 调整分页器的容器样式 */
+  /* 调整分页器普通页码按钮样式 */
+  /* 当前页码的样式 */
+  /* 当前页码的数字样式 */
+  /* 鼠标悬浮在页码上时的样式 */
+  /* 翻页按钮样式 */
+  /* 跳转输入框样式 */
+  /* 跳转按钮样式 */
+  /* 更改每页显示条数选择器样式 */
+  /* 隐藏分页器底部边框线 */
+}
+.filePagination .ant-pagination {
+  font-size: 14px;
+  /* 设置字体大小 */
+  color: #333;
+  /* 设置字体颜色 */
+}
+.filePagination .ant-pagination-item {
+  border: none;
+  /* 移除边框 */
+  background: none;
+  /* 移除背景 */
+  border-radius: 50%;
+}
+.filePagination .ant-pagination-item-active {
+  border: none;
+  /* 移除边框 */
+  background-color: #3649f9;
+  /* 设置背景颜色 */
+  color: #fff !important;
+  /* 设置字体颜色，确保覆盖默认样式 */
+}
+.filePagination .ant-pagination-item-active a {
+  color: #fff !important;
+  /* 设置字体颜色，确保覆盖默认样式 */
+}
+.filePagination .ant-pagination-item:hover,
+.filePagination .ant-pagination-item a:hover {
+  color: #8092A9;
+  /* 设置悬浮时的字体颜色 */
+  border-color: #1890ff;
+  /* 设置悬浮时的边框颜色 */
+}
+.filePagination .ant-pagination-prev,
+.filePagination .ant-pagination-next,
+.filePagination .ant-pagination-jump-prev,
+.filePagination .ant-pagination-jump-next {
+  border: none;
+  /* 移除边框 */
+  background: none;
+  /* 移除背景 */
+}
+.filePagination .ant-pagination-prev .ant-pagination-item-link,
+.filePagination .ant-pagination-next .ant-pagination-item-link,
+.filePagination .ant-pagination-jump-prev .ant-pagination-item-link,
+.filePagination .ant-pagination-jump-next .ant-pagination-item-link {
+  border-radius: 50%;
+  border: 0.77px solid #EBEBF1;
+  font-weight: bold;
+}
+.filePagination .ant-pagination-options-quick-jumper input {
+  border: 1px solid #d9d9d9;
+  /* 设置边框 */
+  border-radius: 2px;
+  /* 设置边框圆角 */
+}
+.filePagination .ant-pagination-options-quick-jumper button {
+  background-color: #1890ff;
+  /* 设置背景颜色 */
+  border-color: #1890ff;
+  /* 设置边框颜色 */
+  color: #fff;
+  /* 设置字体颜色 */
+}
+.filePagination .ant-pagination-options-size-changer .ant-select-selector {
+  border: 1px solid #d9d9d9 !important;
+  /* 设置边框，确保覆盖默认样式 */
+}
+.filePagination .ant-pagination::before {
+  display: none;
+}
