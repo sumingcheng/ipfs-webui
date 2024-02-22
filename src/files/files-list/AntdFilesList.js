@@ -16,7 +16,7 @@ import Checkbox from '../../components/checkbox/Checkbox.js'
 import SelectedActions from '../selected-actions/SelectedActions.js'
 import File from '../file/File.js'
 import LoadingAnimation from '../../components/loading-animation/LoadingAnimation.js'
-import { Pagination, message } from 'antd'
+import { Pagination, message, Table } from 'antd'
 import './fileList.css'
 
 const addFiles = async (filesPromise, onAddFiles) => {
@@ -52,7 +52,7 @@ const mergeRemotePinsIntoFiles = (files, remotePins = [], pendingPins = [], fail
   })
 }
 
-export const FilesList = ({
+export const AntdFilesList = ({
   className,
   files,
   pins,
@@ -89,6 +89,29 @@ export const FilesList = ({
   const refreshPinCache = true // manually clicking on Pin Status column skips cache and updates remote status
 
   filesPathInfo = filesPathInfo ?? {}
+
+  const columns = [
+    {
+      title: '模型名称',
+      dataIndex: 'name',
+      key: 'name'
+    },
+    {
+      title: '固定状态',
+      dataIndex: 'isPinned',
+      key: 'isPinned'
+    },
+    {
+      title: '大小',
+      dataIndex: 'size',
+      key: 'size'
+    },
+    {
+      title: '操作',
+      key: 'action'
+    }
+  ]
+
   const [{
     canDrop,
     isOver,
@@ -292,7 +315,7 @@ export const FilesList = ({
     style
   }) => {
     const pinsString = pins.map(p => p.toString())
-    // console.log(currentFiles)
+    console.log(currentFiles)
     const listItem = currentFiles[index]
 
     const onNavigateHandler = () => {
@@ -375,24 +398,27 @@ export const FilesList = ({
 
   return (
     <section ref={drop}
-             className={classnames('tableMain FilesList no-select sans-serif border-box w-100 flex flex-column', className)}>
+             className={classnames('tableMain AntdFilesList no-select sans-serif border-box w-100 flex flex-column', className)}>
       {showLoadingAnimation
         ? <LoadingAnimation/>
         : <Fragment>
           {/* 表格标题 */}
-          <header className="tableHeader" >
+          <header className="tableHeader gray pv3 flex items-center flex-none" style={{
+            paddingRight: '1px',
+            paddingLeft: '1px'
+          }}>
             {/* 选项 */}
             <div className={checkBoxCls}>
               <Checkbox checked={allSelected} onChange={toggleAll} aria-label={t('selectAllEntries')}/>
             </div>
             {/* 模型名称 */}
-            <div className="textLeft pl3">
+            <div className="ph2 f6 flex-auto moduleName w-30">
               <button aria-label={t('sortBy', { name: t('app:terms.name') })} onClick={changeSort(sorts.BY_NAME)}>
                 {t('app:terms.name')}{sortByIcon(sorts.BY_NAME)}
               </button>
             </div>
             {/* 固定状态 */}
-            <div className="">
+            <div className="pl2 pr1 tr f6 flex-none dn db-l mw4">
               {pinningServices && pinningServices.length
                 ? <button aria-label={t('app:terms.pinStatus')}
                           onClick={() => doFetchRemotePins(files, refreshPinCache)}>{t('app:terms.pinStatus')}</button>
@@ -400,19 +426,19 @@ export const FilesList = ({
               }
             </div>
             {/* 大小 */}
-            <div className="">
+            <div className="pl2 pr4 tr f6 flex-none dn db-l mw4 w-10">
               <button aria-label={t('sortBy', { name: t('size') })} onClick={changeSort(sorts.BY_SIZE)}>
                 {t('app:terms.size')} {sortByIcon(sorts.BY_SIZE)}
               </button>
             </div>
             {/* 操作 */}
-            <div className="">
+            <div className="pl2 pr4 tc f6 flex-none dn db-l mw4 w-10">
               <span>操作</span> {/* 这里是你的新列标题 */}
             </div>
             {/* ... */}
-            {/* <div className=""></div> */}
+            <div className="pa2 w-2"></div>
           </header>
-          {/* 表格内容 */}
+          {/* 表格内容部分 */}
           <WindowScroller>
             {({
               height,
@@ -420,7 +446,7 @@ export const FilesList = ({
               onChildScroll,
               scrollTop
             }) => (
-              <div className="flex-auto listContent">
+              <div className="flex-auto">
                 <AutoSizer disableHeight>
                   {({ width }) => (
                     <List
@@ -476,7 +502,7 @@ export const FilesList = ({
   )
 }
 
-FilesList.propTypes = {
+AntdFilesList.propTypes = {
   className: PropTypes.string,
   files: PropTypes.array.isRequired,
   remotePins: PropTypes.array,
@@ -521,5 +547,5 @@ export default connect(
   'selectFilesPathInfo',
   'selectShowLoadingAnimation',
   'doDismissFailedPin',
-  withTranslation('files')(FilesList)
+  withTranslation('files')(AntdFilesList)
 )

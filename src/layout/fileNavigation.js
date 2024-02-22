@@ -7,8 +7,8 @@ const ModelFile = () => {
   return (
     <div className={'ModelFile'}>
       <Button shape="round">全部</Button>
-      <Button shape="round">来自 HuggingFace</Button>
-      <Button shape="round">来自 魔搭社区</Button>
+      <Button shape="round">来自HuggingFace</Button>
+      <Button shape="round">来自魔搭社区</Button>
     </div>
   )
 }

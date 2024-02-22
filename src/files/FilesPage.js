@@ -12,21 +12,64 @@ import withTour from '../components/tour/withTour.js'
 import InfoBoxes from './info-boxes/InfoBoxes.js'
 import FilePreview from './file-preview/FilePreview.js'
 import FilesList from './files-list/FilesList.js'
+import AntdFilesList from './files-list/AntdFilesList.js'
 import { getJoyrideLocales } from '../helpers/i8n.js'
 
 // Icons
-import Modals, { DELETE, NEW_FOLDER, SHARE, RENAME, ADD_BY_PATH, CLI_TUTOR_MODE, PINNING, PUBLISH } from './modals/Modals.js'
+import Modals, {
+  DELETE,
+  NEW_FOLDER,
+  SHARE,
+  RENAME,
+  ADD_BY_PATH,
+  CLI_TUTOR_MODE,
+  PINNING,
+  PUBLISH
+} from './modals/Modals.js'
 import Header from './header/Header.js'
 import FileImportStatus from './file-import-status/FileImportStatus.js'
 
 const FilesPage = ({
-  doFetchPinningServices, doFilesFetch, doPinsFetch, doFilesSizeGet, doFilesDownloadLink, doFilesDownloadCarLink, doFilesWrite, doFilesAddPath, doUpdateHash,
-  doFilesUpdateSorting, doFilesNavigateTo, doFilesMove, doSetCliOptions, doFetchRemotePins, remotePins, pendingPins, failedPins, doExploreUserProvidedPath,
-  ipfsProvider, ipfsConnected, doFilesMakeDir, doFilesShareLink, doFilesDelete, doSetPinning, onRemotePinClick, doPublishIpnsKey,
-  files, filesPathInfo, pinningServices, toursEnabled, handleJoyrideCallback, isCliTutorModeEnabled, cliOptions, t
+  doFetchPinningServices,
+  doFilesFetch,
+  doPinsFetch,
+  doFilesSizeGet,
+  doFilesDownloadLink,
+  doFilesDownloadCarLink,
+  doFilesWrite,
+  doFilesAddPath,
+  doUpdateHash,
+  doFilesUpdateSorting,
+  doFilesNavigateTo,
+  doFilesMove,
+  doSetCliOptions,
+  doFetchRemotePins,
+  remotePins,
+  pendingPins,
+  failedPins,
+  doExploreUserProvidedPath,
+  ipfsProvider,
+  ipfsConnected,
+  doFilesMakeDir,
+  doFilesShareLink,
+  doFilesDelete,
+  doSetPinning,
+  onRemotePinClick,
+  doPublishIpnsKey,
+  files,
+  filesPathInfo,
+  pinningServices,
+  toursEnabled,
+  handleJoyrideCallback,
+  isCliTutorModeEnabled,
+  cliOptions,
+  t
 }) => {
   const contextMenuRef = useRef()
-  const [modals, setModals] = useState({ show: null, files: null })
+  const [modals, setModals] = useState({
+    show: null,
+    files: null
+  })
   const [contextMenu, setContextMenu] = useState({
     isOpen: false,
     translateX: 0,
@@ -72,7 +115,10 @@ const FilesPage = ({
 
   const onAddByPath = (path, name) => doFilesAddPath(files.path, path, name)
   const onInspect = (cid) => doUpdateHash(`/explore/ipfs/${cid}`)
-  const showModal = (modal, files = null) => setModals({ show: modal, files })
+  const showModal = (modal, files = null) => setModals({
+    show: modal,
+    files
+  })
   const hideModal = () => setModals({})
   const handleContextMenu = (ev, clickType, file, pos) => {
     // This is needed to disable the native OS right-click menu
@@ -115,7 +161,14 @@ const FilesPage = ({
     })
   }
 
-  const MainView = ({ t, files, remotePins, pendingPins, failedPins, doExploreUserProvidedPath }) => {
+  const MainView = ({
+    t,
+    files,
+    remotePins,
+    pendingPins,
+    failedPins,
+    doExploreUserProvidedPath
+  }) => {
     if (!files) return (<div/>)
 
     if (files.type === 'unknown') {
@@ -123,8 +176,10 @@ const FilesPage = ({
 
       return (
         <div>
-          <Trans i18nKey='cidNotFileNorDir' t={t}>
-            The current link isn't a file, nor a directory. Try to <button className='link blue pointer' onClick={() => doExploreUserProvidedPath(path)}>inspect</button> it instead.
+          <Trans i18nKey="cidNotFileNorDir" t={t}>
+            The current link isn't a file, nor a directory. Try to <button className="link blue pointer"
+                                                                           onClick={() => doExploreUserProvidedPath(path)}>inspect</button> it
+            instead.
           </Trans>
         </div>
       )
@@ -132,30 +187,52 @@ const FilesPage = ({
 
     if (files.type === 'file') {
       return (
-        <FilePreview {...files} onDownload={() => onDownload([files])} />
+        <FilePreview {...files} onDownload={() => onDownload([files])}/>
       )
     }
 
     return (
-      <FilesList
-        key={window.encodeURIComponent(files.path)}
-        updateSorting={doFilesUpdateSorting}
-        files={files.content}
-        remotePins={remotePins}
-        pendingPins={pendingPins}
-        failedPins={failedPins}
-        upperDir={files.upper}
-        onShare={(files) => showModal(SHARE, files)}
-        onRename={(files) => showModal(RENAME, files)}
-        onRemove={(files) => showModal(DELETE, files)}
-        onSetPinning={(files) => showModal(PINNING, files)}
-        onInspect={onInspect}
-        onRemotePinClick={onRemotePinClick}
-        onDownload={onDownload}
-        onAddFiles={onAddFiles}
-        onNavigate={doFilesNavigateTo}
-        onMove={doFilesMove}
-        handleContextMenuClick={handleContextMenu} />
+      <>
+        <FilesList
+          key={window.encodeURIComponent(files.path)}
+          updateSorting={doFilesUpdateSorting}
+          files={files.content}
+          remotePins={remotePins}
+          pendingPins={pendingPins}
+          failedPins={failedPins}
+          upperDir={files.upper}
+          onShare={(files) => showModal(SHARE, files)}
+          onRename={(files) => showModal(RENAME, files)}
+          onRemove={(files) => showModal(DELETE, files)}
+          onSetPinning={(files) => showModal(PINNING, files)}
+          onInspect={onInspect}
+          onRemotePinClick={onRemotePinClick}
+          onDownload={onDownload}
+          onAddFiles={onAddFiles}
+          onNavigate={doFilesNavigateTo}
+          onMove={doFilesMove}
+          handleContextMenuClick={handleContextMenu}/>
+        {/* <AntdFilesList */}
+        {/*   key={window.encodeURIComponent(files.path)} */}
+        {/*   updateSorting={doFilesUpdateSorting} */}
+        {/*   files={files.content} */}
+        {/*   remotePins={remotePins} */}
+        {/*   pendingPins={pendingPins} */}
+        {/*   failedPins={failedPins} */}
+        {/*   upperDir={files.upper} */}
+        {/*   onShare={(files) => showModal(SHARE, files)} */}
+        {/*   onRename={(files) => showModal(RENAME, files)} */}
+        {/*   onRemove={(files) => showModal(DELETE, files)} */}
+        {/*   onSetPinning={(files) => showModal(PINNING, files)} */}
+        {/*   onInspect={onInspect} */}
+        {/*   onRemotePinClick={onRemotePinClick} */}
+        {/*   onDownload={onDownload} */}
+        {/*   onAddFiles={onAddFiles} */}
+        {/*   onNavigate={doFilesNavigateTo} */}
+        {/*   onMove={doFilesMove} */}
+        {/*   handleContextMenuClick={handleContextMenu}/> */}
+      </>
+
     )
   }
 
@@ -175,7 +252,7 @@ const FilesPage = ({
   }
 
   return (
-    <div data-id='FilesPage' className='mw9 center'>
+    <div data-id="FilesPage" className="mw9 center">
       <Helmet>
         <title>{getTitle(filesPathInfo, t)}</title>
       </Helmet>
@@ -212,13 +289,14 @@ const FilesPage = ({
         onAddByPath={(files) => showModal(ADD_BY_PATH, files)}
         onNewFolder={(files) => showModal(NEW_FOLDER, files)}
         onCliTutorMode={() => showModal(CLI_TUTOR_MODE)}
-        handleContextMenu={(...args) => handleContextMenu(...args, true)} />
+        handleContextMenu={(...args) => handleContextMenu(...args, true)}/>
 
-      <MainView t={t} files={files} remotePins={remotePins} pendingPins={pendingPins} failedPins={failedPins} doExploreUserProvidedPath={doExploreUserProvidedPath}/>
+      <MainView t={t} files={files} remotePins={remotePins} pendingPins={pendingPins} failedPins={failedPins}
+                doExploreUserProvidedPath={doExploreUserProvidedPath}/>
 
       <InfoBoxes isRoot={filesPathInfo.isMfs && filesPathInfo.isRoot}
-        isCompanion={false}
-        filesExist={!!(files && files.content && files.content.length)} />
+                 isCompanion={false}
+                 filesExist={!!(files && files.content && files.content.length)}/>
 
       <Modals
         done={hideModal}
@@ -231,19 +309,22 @@ const FilesPage = ({
         onPinningSet={doSetPinning}
         onPublish={doPublishIpnsKey}
         cliOptions={cliOptions}
-        { ...modals } />
+        {...modals} />
 
-      <FileImportStatus />
+      <FileImportStatus/>
 
       <ReactJoyride
         run={toursEnabled}
-        steps={filesTour.getSteps({ t, Trans })}
+        steps={filesTour.getSteps({
+          t,
+          Trans
+        })}
         styles={filesTour.styles}
         callback={handleJoyrideCallback}
         continuous
         scrollToFirstStep
         locale={getJoyrideLocales(t)}
-        showProgress />
+        showProgress/>
     </div>
   )
 }

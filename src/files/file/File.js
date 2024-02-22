@@ -127,7 +127,7 @@ const File = ({
     })
   })
 
-  let className = 'File b--light-gray relative flex items-center bt'
+  let className = 'File b--light-gray relative flex items-center bt tableContent'
 
   if (selected) {
     className += ' selected'
@@ -247,35 +247,26 @@ const File = ({
                     aria-label={t('checkboxLabel', { name })}/>
         </div>
         {/* 模型名称 */}
-        <button ref={preview} onClick={onNavigate}
-                className="relative pointer flex items-center flex-grow-1 ph2 pv1 w-30"
-                aria-label={name === '..'
-                  ? t('previousFolder')
-                  : t('fileLabel', {
-                    name,
-                    type,
-                    size
-                  })}>
-          <div className="dib flex-shrink-0 mr2">
-            <FileIcon name={name} type={type}/>
-          </div>
-          <div style={{ width: 'calc(100% - 3.25rem)' }}>
-            <div className="f6 truncate charcoal">{name}</div>
-            <div className="f7 mt-1 gray truncate monospace">{hash}</div>
-            {/* <Tooltip text={name}> */}
-            {/*   <div className="f6 truncate charcoal">{name}</div> */}
-            {/* </Tooltip> */}
-            {/* <Tooltip text={hash}> */}
-            {/*   <div className="f7 mt-1 gray truncate monospace">{hash}</div> */}
-            {/* </Tooltip> */}
-          </div>
-        </button>
+          <button ref={preview} onClick={onNavigate}
+                  className="relative pointer flex items-center ph2 pv1 rowName flex-grow-1"
+                  aria-label={name === '..'
+                    ? t('previousFolder')
+                    : t('fileLabel', {
+                      name,
+                      type,
+                      size
+                    })}>
+            <div className="dib flex-shrink-0 mr2">
+              <FileIcon name={name} type={type}/>
+            </div>
+            <div style={{ width: '100%' }}>
+              <div className="f6 truncate charcoal">{name}</div>
+              <div className="f7 mt-1 gray truncate monospace">{hash}</div>
+            </div>
+          </button>
         {/* 固定状态 */}
-        <div className="ph2 pv1 flex-none dn db-l tr mw3 w-20 transition-all">
-          <button className="ph2 db button-inside-focus PinState" style={{
-            width: '2.5rem',
-            height: '2rem'
-          }} onClick={isFailedPin
+        <div className="ph0 pv1 dn db-l tr mw3 transition-all PinState">
+          <button className="ph2 db button-inside-focus" onClick={isFailedPin
             ? onDismissFailedPin
             : () => onSetPinning([{
                 cid,
@@ -285,11 +276,11 @@ const File = ({
           </button>
         </div>
         {/* 大小 */}
-        <div className="tableTextColor size pl2 pr4 pv1 flex-none f6 dn db-l tr w-10 mw4">
+        <div className="tableTextColor">
           {size}
         </div>
         {/* 操作 */}
-        <div className="size  rowTable f6 dn db-l tc w-20 mw4 optionTextColor">
+        <div className="size  rowTable f6 dn db-l tc mw4 optionTextColor">
           {/* <Button type="text" onClick={handleDownload} className={''}>下载</Button> */}
           <Button type="text" onClick={() => showModal(cid, name, size)} className={''}>广播</Button>
           {/* <Dropdown */}
@@ -301,12 +292,12 @@ const File = ({
           {/* > */}
           {/*   <Button className={'moreButton'}>更多</Button> */}
           {/* </Dropdown> */}
+          {/* ... */}
+          <button ref={dotsWrapper} className="ph2 db button-inside-focus file-context-menu" style={{ width: '1rem' }}
+                  onClick={handleCtxLeftClick} aria-label={t('checkboxLabel', { name })}>
+            <GlyphDots className="fill-gray-muted pointer hover-fill-gray transition-all"/>
+          </button>
         </div>
-        {/* ... */}
-        <button ref={dotsWrapper} className="ph2 db button-inside-focus file-context-menu" style={{ width: '2.5rem' }}
-                onClick={handleCtxLeftClick} aria-label={t('checkboxLabel', { name })}>
-          <GlyphDots className="fill-gray-muted pointer hover-fill-gray transition-all"/>
-        </button>
       </div>
       {/* 弹框 */}
       <Modal style={{ top: 20 }} title="广播到应用商店" open={isModalVisible} onOk={handleOk} onCancel={handleCancel}

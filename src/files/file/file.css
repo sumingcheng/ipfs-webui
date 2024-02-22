@@ -1,5 +1,17 @@
 .tableTextColor {
   color: #0E1C4C;
+  text-align: center;
+  font-size: 12px;
+}
+.tableContent {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 30px 1fr 140px  140px 140px;
+  justify-content: center;
+  align-items: center;
+}
+.tableContent .rowName {
+  text-align: left;
 }
 .optionTextColor button {
   font-size: 12px;
@@ -15,6 +27,9 @@
 }
 .optionTextColor button + button {
   margin-left: 20px;
+}
+.PinState {
+  margin: 0 auto;
 }
 .rowTable {
   display: flex;
@@ -34,4 +49,7 @@
 }
 .moreButton:hover {
   color: #658af0;
+}
+.drops button {
+  fill: #3649F9;
 }
