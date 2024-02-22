@@ -77,6 +77,9 @@ const FilesPage = ({
     file: null
   })
 
+  const [currentPage, setCurrentPage] = useState(1)
+  const [pageSize, setPageSize] = useState(6)
+
   useEffect(() => {
     doFetchPinningServices()
     doFilesFetch()
@@ -194,6 +197,10 @@ const FilesPage = ({
     return (
       <>
         <FilesList
+          currentPage={currentPage}
+          pageSize={pageSize}
+          setCurrentPage={setCurrentPage}
+          setPageSize={setPageSize}
           key={window.encodeURIComponent(files.path)}
           updateSorting={doFilesUpdateSorting}
           files={files.content}

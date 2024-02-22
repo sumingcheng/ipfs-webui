@@ -78,6 +78,10 @@ export const FilesList = ({
   doFetchRemotePins,
   doDismissFailedPin,
   handleContextMenuClick,
+  currentPage,
+  pageSize,
+  setCurrentPage,
+  setPageSize,
   t
 }) => {
   const [selected, setSelected] = useState([])
@@ -346,24 +350,14 @@ export const FilesList = ({
     'o-70': !allSelected
   }, ['pl2 w2 glow'])
 
-  const onShowSizeChange = (current, pageSize) => {
-    console.log(current, pageSize)
-  }
-
-  /* 分页 */
-  const [currentPage, setCurrentPage] = useState(1)
-  const [pageSize, setPageSize] = useState(6)
-
   // 分页改变时的回调
-  const handlePageChange = (page, pageSize) => {
+  const handlePageChange = (page) => {
     setCurrentPage(page)
-    setPageSize(pageSize)
   }
 
   // 每页显示数量改变时的回调
   const handlePageSizeChange = (current, size) => {
     setPageSize(size)
-    setCurrentPage(1) // 每次改变每页数量时，返回第一页
   }
 
   // 根据当前页码和每页大小计算当前页的文件
@@ -380,7 +374,7 @@ export const FilesList = ({
         ? <LoadingAnimation/>
         : <Fragment>
           {/* 表格标题 */}
-          <header className="tableHeader" >
+          <header className="tableHeader">
             {/* 选项 */}
             <div className={checkBoxCls}>
               <Checkbox checked={allSelected} onChange={toggleAll} aria-label={t('selectAllEntries')}/>
