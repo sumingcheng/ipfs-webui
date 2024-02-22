@@ -1,34 +1,36 @@
 .navbar-item-active {
   /*border-bottom: 5px solid rgba(201, 210, 215, .4);*/
 }
+
 .navBg {
   background-color: #fff;
   box-shadow: 8px 10px 15px 0px rgba(54, 73, 249, 0.06);
 }
+
 /* 激活状态标签 */
 .navbar-item-active,
 .svgStroke-active {
-  color: #3649F9;
-  /* 激活状态的颜色 */
+  color: #3649F9; /* 激活状态的颜色 */
 }
+
 /* 非激活状态的标签样式 */
 .navbar-item-inactive,
 .svgStroke-inactive {
-  color: #0C296E;
-  /* 非激活状态的颜色 */
+  color: #0C296E; /* 非激活状态的颜色 */
 }
+
 .svgStroke {
-  stroke: currentColor;
-  /* 使描边颜色与填充颜色相同 */
-  stroke-width: 2;
-  /* 增加描边的宽度 */
+  stroke: currentColor; /* 使描边颜色与填充颜色相同 */
+  stroke-width: 2; /* 增加描边的宽度 */
 }
+
 @media only screen and (min-width: 60em) {
   .navbar-container {
     width: 130px;
     background-color: white;
     color: black;
   }
+
   .navbar-item-active {
     /*border-left: 5px solid rgba(201, 210, 215, .4);*/
     border-bottom: 0;
@@ -36,35 +38,42 @@
     font-weight: bold !important;
     border-radius: 4px;
   }
+
   .navbar-item {
     /*border-left: 5px solid rgba(201, 210, 215, .4);*/
     border-bottom: 0;
     font-size: 14px;
     font-weight: bold;
   }
+
   /*.navbar-item:hover {*/
   /*  background-color: #3c63e3 !important;*/
   /*  color: white !important;*/
   /*}*/
 }
+
 @media only screen and (min-height: 49em) and (min-width: 60em) {
   .navbar-logo-vert {
     padding-bottom: 1rem;
   }
+
   .navbar-item {
     padding-top: 1rem;
     padding-bottom: 1rem;
   }
+
   .navbar-footer {
     margin-top: 1rem;
     margin-bottom: 1rem;
   }
 }
+
 @media only screen and (max-height: 40em) {
   /*.navbar-footer {*/
   /*  display: none;*/
   /*}*/
 }
+
 .icon {
   padding: 0 1.3rem 1rem;
 }

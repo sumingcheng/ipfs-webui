@@ -9,6 +9,7 @@ import StrokeWeb from '../icons/StrokeWeb.js'
 import StrokeCube from '../icons/StrokeCube.js'
 import StrokeSettings from '../icons/StrokeSettings.js'
 import StrokeIpld from '../icons/StrokeIpld.js'
+import { useNavigate } from 'react-router-dom'
 
 // Styles
 import './NavBar.css'
@@ -58,8 +59,18 @@ const NavLink = ({
 
 export const NavBar = ({ t }) => {
   React.useEffect(() => {
-    if (window.location.hash === '#/' || window.location.hash === '') {
+    // 检查sessionStorage中是否有首次加载的标记
+    const isFirstLoad = sessionStorage.getItem('isFirstLoad') === null
+
+    // 获取当前的hash值
+    const currentHash = window.location.hash
+
+    // 如果是首次加载并且当前路由不是 `/modelRepository#/files`
+    if (isFirstLoad && currentHash !== '#/files') {
+      // 修改URL为希望的目标URL
       window.location.hash = '#/files'
+      // 标记sessionStorage，表示非首次加载
+      sessionStorage.setItem('isFirstLoad', 'false')
     }
   }, [])
 
