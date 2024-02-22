@@ -52,6 +52,7 @@ const File = ({
   const dotsWrapper = useRef()
 
   const handleCtxLeftClick = (ev) => {
+    ev.stopPropagation()
     const pos = dotsWrapper.current.getBoundingClientRect()
     handleContextMenuClick(ev, 'LEFT', {
       name,
@@ -64,6 +65,7 @@ const File = ({
   }
 
   const handleCtxRightClick = (ev) => {
+    ev.stopPropagation()
     handleContextMenuClick(ev, 'RIGHT', {
       name,
       size,
@@ -247,23 +249,23 @@ const File = ({
                     aria-label={t('checkboxLabel', { name })}/>
         </div>
         {/* 模型名称 */}
-          <button ref={preview} onClick={onNavigate}
-                  className="relative pointer flex items-center ph2 pv1 rowName flex-grow-1"
-                  aria-label={name === '..'
-                    ? t('previousFolder')
-                    : t('fileLabel', {
-                      name,
-                      type,
-                      size
-                    })}>
-            <div className="dib flex-shrink-0 mr2">
-              <FileIcon name={name} type={type}/>
-            </div>
-            <div style={{ width: '100%' }}>
-              <div className="f6 truncate charcoal">{name}</div>
-              <div className="f7 mt-1 gray truncate monospace">{hash}</div>
-            </div>
-          </button>
+        <button ref={preview} onClick={onNavigate}
+                className="relative pointer flex items-center ph2 pv1 rowName flex-grow-1"
+                aria-label={name === '..'
+                  ? t('previousFolder')
+                  : t('fileLabel', {
+                    name,
+                    type,
+                    size
+                  })}>
+          <div className="dib flex-shrink-0 mr2">
+            <FileIcon name={name} type={type}/>
+          </div>
+          <div style={{ width: '100%' }}>
+            <div className="f6 truncate charcoal">{name}</div>
+            <div className="f7 mt-1 gray truncate monospace">{hash}</div>
+          </div>
+        </button>
         {/* 固定状态 */}
         <div className="ph0 pv1 dn db-l tr mw3 transition-all PinState">
           <button className="ph2 db button-inside-focus" onClick={isFailedPin
@@ -293,10 +295,12 @@ const File = ({
           {/*   <Button className={'moreButton'}>更多</Button> */}
           {/* </Dropdown> */}
           {/* ... */}
-          <button ref={dotsWrapper} className="ph2 db button-inside-focus file-context-menu" style={{ width: '1rem' }}
-                  onClick={handleCtxLeftClick} aria-label={t('checkboxLabel', { name })}>
-            <GlyphDots className="fill-gray-muted pointer hover-fill-gray transition-all"/>
-          </button>
+          <div className={'Dots'}>
+            <button ref={dotsWrapper} className="ph2 db button-inside-focus file-context-menu"
+                    onClick={handleCtxLeftClick} aria-label={t('checkboxLabel', { name })}>
+              <GlyphDots className="fill-gray-muted pointer hover-fill-gray transition-all"/>
+            </button>
+          </div>
         </div>
       </div>
       {/* 弹框 */}

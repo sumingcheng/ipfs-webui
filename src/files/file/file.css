@@ -6,12 +6,16 @@
 .tableContent {
   display: grid;
   width: 100%;
-  grid-template-columns: 30px 1fr 140px  140px 140px;
+  grid-template-columns: 30px 1fr 140px  140px 140px  ;
   justify-content: center;
   align-items: center;
 }
 .tableContent .rowName {
   text-align: left;
+}
+.tableContent .Dots button {
+  width: 1rem;
+  margin-left: 10px;
 }
 .optionTextColor button {
   font-size: 12px;
