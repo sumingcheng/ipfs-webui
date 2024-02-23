@@ -382,7 +382,7 @@ export const FilesList = ({
             {/* 模型名称 */}
             <div className="textLeft">
               <button className={'w100px'} aria-label={t('sortBy', { name: t('app:terms.name') })} onClick={changeSort(sorts.BY_NAME)}>
-                {t('app:terms.name')}{sortByIcon(sorts.BY_NAME)}
+                {t('模型名称')}{sortByIcon(sorts.BY_NAME)}
               </button>
             </div>
             {/* 固定状态 */}
