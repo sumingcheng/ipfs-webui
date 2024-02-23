@@ -6,7 +6,8 @@
 .tableContent {
   display: grid;
   width: 100%;
-  grid-template-columns: 30px 1fr 140px  140px 140px  ;
+  min-width: 810px;
+  grid-template-columns: 30px 1fr 140px 140px 140px;
   justify-content: center;
   align-items: center;
 }

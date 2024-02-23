@@ -9,7 +9,6 @@ import StrokeWeb from '../icons/StrokeWeb.js'
 import StrokeCube from '../icons/StrokeCube.js'
 import StrokeSettings from '../icons/StrokeSettings.js'
 import StrokeIpld from '../icons/StrokeIpld.js'
-import { useNavigate } from 'react-router-dom'
 
 // Styles
 import './NavBar.css'

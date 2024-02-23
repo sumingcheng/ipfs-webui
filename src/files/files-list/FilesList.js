@@ -380,28 +380,28 @@ export const FilesList = ({
               <Checkbox checked={allSelected} onChange={toggleAll} aria-label={t('selectAllEntries')}/>
             </div>
             {/* 模型名称 */}
-            <div className="textLeft pl3">
-              <button aria-label={t('sortBy', { name: t('app:terms.name') })} onClick={changeSort(sorts.BY_NAME)}>
+            <div className="textLeft">
+              <button className={'w100px'} aria-label={t('sortBy', { name: t('app:terms.name') })} onClick={changeSort(sorts.BY_NAME)}>
                 {t('app:terms.name')}{sortByIcon(sorts.BY_NAME)}
               </button>
             </div>
             {/* 固定状态 */}
             <div className="">
               {pinningServices && pinningServices.length
-                ? <button aria-label={t('app:terms.pinStatus')}
+                ? <button aria-label={t('app:terms.pinStatus')} className={'w100px'}
                           onClick={() => doFetchRemotePins(files, refreshPinCache)}>{t('app:terms.pinStatus')}</button>
                 : <>{t('app:terms.pinStatus')}</>
               }
             </div>
             {/* 大小 */}
             <div className="">
-              <button aria-label={t('sortBy', { name: t('size') })} onClick={changeSort(sorts.BY_SIZE)}>
+              <button className={'w100px'} aria-label={t('sortBy', { name: t('size') })} onClick={changeSort(sorts.BY_SIZE)}>
                 {t('app:terms.size')} {sortByIcon(sorts.BY_SIZE)}
               </button>
             </div>
             {/* 操作 */}
             <div className="">
-              <span>操作</span> {/* 这里是你的新列标题 */}
+              <span className={'w100px'}>操作</span> {/* 这里是你的新列标题 */}
             </div>
             {/* ... */}
             {/* <div className=""></div> */}

@@ -13,6 +13,7 @@ import StrokeDownload from '../../icons/StrokeDownload.js'
 import StrokeData from '../../icons/StrokeData.js'
 import StrokePin from '../../icons/StrokePin.js'
 import { cliCmdKeys } from '../../bundles/files/consts.js'
+import dropdownMenu from './dropdownMenu.css'
 
 class ContextMenu extends React.Component {
   constructor (props) {
@@ -49,12 +50,12 @@ class ContextMenu extends React.Component {
       translateX, translateY, className, isMfs, isUnknown, isCliTutorModeEnabled
     } = this.props
     return (
-      <Dropdown className={className}>
+      <Dropdown className={`${className} dropdownMenu`}>
         <DropdownMenu
           ref={this.dropdownMenuRef}
           top={-8}
           arrowMarginRight='11px'
-          left='calc(100% - 200px)'
+          left='calc(100% - 255px)'
           translateX={-translateX}
           translateY={-translateY}
           open={this.props.isOpen}
